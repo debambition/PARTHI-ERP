@@ -1,0 +1,126 @@
+2025-09-17 17:00:35 INFO  [main] in.parthi.ui.TransactionInterface - Start taking transaction details from user
+2025-09-17 17:02:06 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: Logistic]
+2025-09-17 17:02:06 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2025-09-17 17:02:06 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-09-17 17:02:07 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-09-17 17:02:07 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: com.microsoft.sqlserver.jdbc.SQLServerDriver
+2025-09-17 17:02:07 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:sqlserver://acceleratron.in:3133;databaseName=parthi_erp;encrypt=false]
+2025-09-17 17:02:07 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=acc}
+2025-09-17 17:02:07 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-09-17 17:02:07 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-09-17 17:02:09 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: SQLServerDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-17 17:02:11 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-17 17:02:11 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@7eb27768] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-09-17 17:02:12 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:sqlserver://acceleratron.in:3133;databaseName=parthi_erp;encrypt=false]
+2025-09-17 17:02:12 INFO  [main] i.p.core.service.TransactionService - transaction with id: 43dc1200-6f02-4e9a-a0b2-305c9567f513 found in database
+2025-09-17 17:02:12 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: Logistic]
+2025-09-17 17:02:12 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-09-17 17:02:12 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-09-17 17:02:12 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: com.microsoft.sqlserver.jdbc.SQLServerDriver
+2025-09-17 17:02:12 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:sqlserver://acceleratron.in:3133;databaseName=parthi_erp;encrypt=false]
+2025-09-17 17:02:12 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=acc}
+2025-09-17 17:02:12 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-09-17 17:02:12 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-09-17 17:02:13 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: SQLServerDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-17 17:02:13 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-17 17:02:13 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@21be14c2] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-09-17 17:02:15 INFO  [main] i.p.core.repository.TransactionRepo - Transaction with id: 43dc1200-6f02-4e9a-a0b2-305c9567f513 added successfully
+2025-09-17 17:02:15 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:sqlserver://acceleratron.in:3133;databaseName=parthi_erp;encrypt=false]
+2025-09-17 17:02:15 INFO  [main] in.parthi.ui.ProductInterface - Taking product id from the user
+2025-09-17 17:34:20 INFO  [main] in.parthi.ui.TransactionInterface - Start taking transaction details from user
+2025-09-17 17:35:15 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: Logistic]
+2025-09-17 17:35:15 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2025-09-17 17:35:15 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-09-17 17:35:15 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-09-17 17:35:15 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: com.microsoft.sqlserver.jdbc.SQLServerDriver
+2025-09-17 17:35:15 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:sqlserver://acceleratron.in:3133;databaseName=parthi_erp;encrypt=false]
+2025-09-17 17:35:15 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=acc}
+2025-09-17 17:35:15 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-09-17 17:35:15 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-09-17 17:35:16 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: SQLServerDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-17 17:35:17 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-17 17:35:17 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4f5f474c] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-09-17 17:35:18 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:sqlserver://acceleratron.in:3133;databaseName=parthi_erp;encrypt=false]
+2025-09-17 17:35:18 INFO  [main] i.p.core.service.TransactionService - transaction with id: 8bba153a-38e0-461c-889b-a89252995f00 found in database
+2025-09-17 17:35:18 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: Logistic]
+2025-09-17 17:35:18 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-09-17 17:35:18 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-09-17 17:35:18 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: com.microsoft.sqlserver.jdbc.SQLServerDriver
+2025-09-17 17:35:18 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:sqlserver://acceleratron.in:3133;databaseName=parthi_erp;encrypt=false]
+2025-09-17 17:35:18 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=acc}
+2025-09-17 17:35:18 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-09-17 17:35:18 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-09-17 17:35:19 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: SQLServerDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-17 17:35:19 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-17 17:35:19 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@34fcd292] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-09-17 17:35:20 INFO  [main] i.p.core.repository.TransactionRepo - Transaction with id: 8bba153a-38e0-461c-889b-a89252995f00 added successfully
+2025-09-17 17:35:20 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:sqlserver://acceleratron.in:3133;databaseName=parthi_erp;encrypt=false]
+2025-09-17 17:35:20 INFO  [main] in.parthi.ui.ProductInterface - Taking product id from the user
+2025-09-17 17:35:24 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: Logistic]
+2025-09-17 17:35:24 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-09-17 17:35:24 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-09-17 17:35:24 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: com.microsoft.sqlserver.jdbc.SQLServerDriver
+2025-09-17 17:35:24 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:sqlserver://acceleratron.in:3133;databaseName=parthi_erp;encrypt=false]
+2025-09-17 17:35:24 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=acc}
+2025-09-17 17:35:24 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-09-17 17:35:24 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-09-17 17:35:24 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: SQLServerDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-17 17:35:24 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-17 17:35:24 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3c09a350] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-09-17 17:35:25 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:sqlserver://acceleratron.in:3133;databaseName=parthi_erp;encrypt=false]
+2025-09-17 17:35:25 INFO  [main] i.parthi.core.service.ProductService - Product with id sa-06 updated successfully
+2025-09-17 17:44:55 INFO  [main] in.parthi.ui.TransactionInterface - Start taking transaction details from user
+2025-09-17 17:45:17 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: Logistic]
+2025-09-17 17:45:17 INFO  [main] org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2025-09-17 17:45:17 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-09-17 17:45:17 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-09-17 17:45:17 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: com.microsoft.sqlserver.jdbc.SQLServerDriver
+2025-09-17 17:45:17 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:sqlserver://acceleratron.in:3133;databaseName=parthi_erp;encrypt=false]
+2025-09-17 17:45:17 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=acc}
+2025-09-17 17:45:17 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-09-17 17:45:17 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-09-17 17:45:18 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: SQLServerDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-17 17:45:20 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-17 17:45:20 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4f5f474c] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-09-17 17:45:21 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:sqlserver://acceleratron.in:3133;databaseName=parthi_erp;encrypt=false]
+2025-09-17 17:45:21 INFO  [main] i.p.core.service.TransactionService - transaction with id: cbd922b8-0056-4f7b-8068-64cd566c638e found in database
+2025-09-17 17:45:21 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: Logistic]
+2025-09-17 17:45:21 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-09-17 17:45:21 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-09-17 17:45:21 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: com.microsoft.sqlserver.jdbc.SQLServerDriver
+2025-09-17 17:45:21 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:sqlserver://acceleratron.in:3133;databaseName=parthi_erp;encrypt=false]
+2025-09-17 17:45:21 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=acc}
+2025-09-17 17:45:21 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-09-17 17:45:21 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-09-17 17:45:22 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: SQLServerDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-17 17:45:22 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-17 17:45:22 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@63db743d] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-09-17 17:45:23 INFO  [main] i.p.core.repository.TransactionRepo - Transaction with id: cbd922b8-0056-4f7b-8068-64cd566c638e added successfully
+2025-09-17 17:45:23 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:sqlserver://acceleratron.in:3133;databaseName=parthi_erp;encrypt=false]
+2025-09-17 17:45:23 INFO  [main] in.parthi.ui.ProductInterface - Taking product id from the user
+2025-09-17 17:45:27 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: Logistic]
+2025-09-17 17:45:27 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-09-17 17:45:27 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-09-17 17:45:27 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: com.microsoft.sqlserver.jdbc.SQLServerDriver
+2025-09-17 17:45:27 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:sqlserver://acceleratron.in:3133;databaseName=parthi_erp;encrypt=false]
+2025-09-17 17:45:27 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=acc}
+2025-09-17 17:45:27 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-09-17 17:45:27 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-09-17 17:45:28 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: SQLServerDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-17 17:45:28 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-17 17:45:28 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@592a1882] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-09-17 17:45:29 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:sqlserver://acceleratron.in:3133;databaseName=parthi_erp;encrypt=false]
+2025-09-17 17:45:29 INFO  [main] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: Logistic]
+2025-09-17 17:45:29 INFO  [main] o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-09-17 17:45:29 WARN  [main] o.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-09-17 17:45:29 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: com.microsoft.sqlserver.jdbc.SQLServerDriver
+2025-09-17 17:45:29 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:sqlserver://acceleratron.in:3133;databaseName=parthi_erp;encrypt=false]
+2025-09-17 17:45:29 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {password=****, user=acc}
+2025-09-17 17:45:29 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-09-17 17:45:29 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-09-17 17:45:29 WARN  [main] org.hibernate.orm.deprecation - HHH90000025: SQLServerDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-17 17:45:30 INFO  [main] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-17 17:45:30 INFO  [main] o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4ae49387] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-09-17 17:45:31 INFO  [main] i.parthi.core.repository.ProductRepo - Product with id: sa-06 added to the database
+2025-09-17 17:45:31 INFO  [main] o.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:sqlserver://acceleratron.in:3133;databaseName=parthi_erp;encrypt=false]
+2025-09-17 17:45:31 INFO  [main] i.parthi.core.service.ProductService - Product with id sa-06 updated successfully

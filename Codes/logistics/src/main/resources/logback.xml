@@ -3,13 +3,6 @@
     <!-- Define a property for log directory -->
     <property name="LOG_DIR" value="logs" />
 
-    <!-- Console Appender (optional, for debugging in console) -->
-    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{36} - %msg%n</pattern>
-        </encoder>
-    </appender>
-
     <!-- File Appender with rolling policy -->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_DIR}/parthilog.log</file>
@@ -21,7 +14,7 @@
         </rollingPolicy>
 
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{36} - %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level [%c] %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 

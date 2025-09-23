@@ -2,13 +2,14 @@ package in.parthi.ui;
 
 import java.time.LocalDate;
 import java.util.Scanner;
-
+import javax.management.RuntimeErrorException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import in.parthi.common.PaymentMode;
 import in.parthi.common.Properties;
 import in.parthi.common.TransactionCategory;
 import in.parthi.common.TransactionType;
+import in.parthi.core.model.product.Product;
 import in.parthi.core.model.transaction.Transaction;
 import in.parthi.core.service.TransactionService;
 
@@ -23,7 +24,7 @@ public class TransactionInterface {
      * @return Returns a transaction matching with transaction ID
      */
 
-    public Transaction gettransaction() {
+    public Transaction getTransactionForProduct() {
         Transaction transaction = null;
         Scanner sc = Properties.getSacnnerInstance();
         sc.nextLine();
@@ -35,10 +36,64 @@ public class TransactionInterface {
 
     }
 
+    /**
+     * This method is called from the add Products with a transaction instance to make a consolidated
+     * AddProduct Object.
+     * 
+     * @return Returns a responce message for the addition action of transaction
+     */
+    public Transaction addTransaction(LocalDate date) {
+        Transaction transaction = new Transaction();
+        try {
+            // String response = null;
+            logger.info("Start taking transaction details from user");
+            Scanner sc = Properties.getSacnnerInstance();
 
+            transaction.setTransactionDate(date);
+
+            //
+            System.out.print("Enter Invoice Id(if any): ");
+            transaction.setInvoice(sc.nextLine());
+
+            //
+            System.out.print("Enter Particular (if any): ");
+            transaction.setParticular(sc.nextLine());
+
+            // Setting the transaction type when user select the correct option between 1-2
+            // Usend enum class for transaction type
+            transaction.setTxnType(TransactionType.DEBIT.toString());
+            System.out.println("Transaction Type: " + transaction.getTxnType());
+
+            // Setting the Payment mode when the user select the options
+            // Usend Enum for the payment mode.
+            System.out.println("Enter Payment Mode: ");
+            PaymentMode.choose(transaction);
+
+            // Setting the Transaction category when the user select the options
+            // Usend Enum for the payment mode.
+            transaction.setTxnCategory(TransactionCategory.PRODUCT_COST.toString());
+            System.out.println("Transaction Category: " + transaction.getTxnCategory());
+
+            //
+            System.out.print("Enter Description: ");
+            transaction.setDescription(sc.nextLine());
+
+            //
+            System.out.print("Enter Amount: ");
+            transaction.setAmount(sc.nextDouble());
+
+            return transaction;
+        } catch (RuntimeException e) {
+            // response = e.getLocalizedMessage();
+            e.getLocalizedMessage();
+            logger.error("Exception occured while adding transaction: " + e.getLocalizedMessage());
+            throw new RuntimeException(e.getLocalizedMessage());
+        }
+    }
 
     /**
-     * This method is called from the add Products with a transaction instance to make a consolidated AddProduct Object.
+     * This method is called from the add Products with a transaction instance to make a consolidated
+     * AddProduct Object.
      * 
      * @return Returns a responce message for the addition action of transaction
      */
@@ -120,7 +175,7 @@ public class TransactionInterface {
         if (txnCategory == null || txnCategory.length() == 0) {
             System.out.println("Enter Transaction Category: ");
             TransactionCategory.choose(transaction);
-        }else{
+        } else {
             transaction.setTxnCategory(txnCategory);
         }
 
@@ -160,12 +215,12 @@ public class TransactionInterface {
             // System.out.println("Enter Transaction Type: ");
             // TransactionType.choose(transaction);
 
-            if(transaction.getTxnCategory().equalsIgnoreCase("sales") || transaction.getTxnCategory().equalsIgnoreCase("installment")){
+            if (transaction.getTxnCategory().equalsIgnoreCase("sales") || transaction.getTxnCategory().equalsIgnoreCase("installment")) {
                 transaction.setTxnType(TransactionType.CREDIT.name());
                 System.out.print("Transaction type is : CREDIT ");
                 sc.nextLine();
             } else {
-                transaction.setTxnType(TransactionType.DEBIT.name());   // "DEBIT"
+                transaction.setTxnType(TransactionType.DEBIT.name()); // "DEBIT"
                 System.out.print("Transaction type is : DEBIT ");
                 sc.nextLine();
             }

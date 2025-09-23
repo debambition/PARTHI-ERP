@@ -73,8 +73,13 @@ public class ProductService {
         String response = "";
         try {
             response = transactionService.addTransaction(addProduct.getTransaction());
+            Product tmpProduct;
             if (response.contains("added successfully")) {
-                for (Product product : addProduct.getProduct()) {
+                for (Product product : addProduct.getProducts()) {
+                    tmpProduct = productRepo.getProduct(product.getId());
+                    if (tmpProduct != null){
+                        product.setId(productRepo.getNextProductId(product.getId().split("-")[0]));
+                    }
                     response = productRepo.addProduct(product);
                 }
 

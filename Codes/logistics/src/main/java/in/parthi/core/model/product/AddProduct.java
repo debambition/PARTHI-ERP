@@ -5,15 +5,15 @@ import in.parthi.core.model.transaction.Transaction;
 
 public class AddProduct {
     private Transaction transaction;
-    private List<Product> product;
+    private List<Product> products;
     
 
     public AddProduct() {
     }
 
-    public AddProduct(Transaction transaction, List<Product> product) {
+    public AddProduct(Transaction transaction, List<Product> products) {
         this.transaction = transaction;
-        this.product = product;
+        this.products = products;
     }
 
     public Transaction getTransaction() {
@@ -24,12 +24,12 @@ public class AddProduct {
         this.transaction = transaction;
     }
 
-    public List<Product> getProduct() {
-        return this.product;
+    public List<Product> getProducts() {
+        return this.products;
     }
 
-    public void setProduct(List<Product> product) {
-        this.product = product;
+    public void setProduct(List<Product> products) {
+        this.products = products;
     }
 
 }

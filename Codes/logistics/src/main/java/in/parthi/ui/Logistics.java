@@ -1,5 +1,6 @@
 package in.parthi.ui;
 
+import java.io.IOException;
 import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,17 @@ public class Logistics {
 
     public static void main(String[] args) {
 
+        // Clear screen
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                new ProcessBuilder("clear").inheritIO().start().waitFor();
+            }
+        } catch (IOException | InterruptedException ex) {
+            ex.printStackTrace();
+        }
+
 
         Logistics logistics = new Logistics();
         ProductInterface productInterface = new ProductInterface();
@@ -27,29 +39,19 @@ public class Logistics {
             switch (option) {
                 case 1:
                     System.out.println("============Adding Product==========");
-                    response = productInterface.addProduct();
+                    response = productInterface.addProducts();
                     System.out.println("=============================================================");
                     System.out.println(response);
                     System.out.println("=============================================================\n\n");
                     break;
                 case 2:
-                    System.out.println("============Adding Products(Vendor)==========");
-                    System.out.println(productInterface.addProducts());
-                    break;
-
-                case 3:
-                    System.out.println("============Get Product==========");
-                    Product product = productInterface.getProduct();
-                    System.out.println(product.toString());
-                    break;
-                case 4:
                     System.out.println("============Return Product==========");
 
                     System.out.println(productInterface.returnTovendor());
 
                     break;
 
-                case 5:
+                case 3:
                     System.out.println("============Adding Transaction==========");
                     response = (transactionInterface.addTransaction(""));
                     System.out.println("=============================================================");
@@ -57,17 +59,12 @@ public class Logistics {
                     System.out.println("=============================================================\n\n");;
                     break;
 
-                case 6:
-                    System.out.println("============Get Transaction==========");
-                    Transaction transaction = transactionInterface.gettransaction();
-                    System.out.println(transaction.toString());
-                    break;
-                case 7:
+                case 4:
                     System.out.println("============Adding Voucher==========");
                     // System.out.println(VoucherInterface.addVoucher());
 
                     break;
-                case 8:
+                case 5:
                     sc.close();
 
                     System.out.println("Exiting Application Gracefully");
@@ -76,7 +73,7 @@ public class Logistics {
                     break;
             }
 
-        } while (option >= 1 && option < 8);
+        } while (option >= 1 && option < 5);
 
 
     }
@@ -89,24 +86,21 @@ public class Logistics {
      */
     private int getOption() {
         System.out.println("==========MENU========");
-        System.out.println("1] Add product");
-        System.out.println("2] Add products(Vendor)");
-        System.out.println("3] Get Product");
-        System.out.println("4] Return product");
-        System.out.println("5] Add Transaction");
-        System.out.println("6] Get Transaction");
-        System.out.println("7] Add Voucher");
-        System.out.println("8] Exit the App");
-        System.out.print("Enter your option number(1 - 8): ");
+        System.out.println("1] Add product(s)");
+        System.out.println("2] Return product");
+        System.out.println("3] Add Transaction");
+        System.out.println("4] Add Voucher");
+        System.out.println("5] Exit the App");
+        System.out.print("Enter your option number(1 - 5): ");
         int choice = -9999;
         try {
             do {
                 if (choice != -9999) {
-                    System.out.print("Please select a valid choice between 1 - 8: ");
+                    System.out.print("Please select a valid choice between 1 - 5: ");
                 }
                 Scanner sc = Properties.getSacnnerInstance();
                 choice = sc.nextInt();
-            } while (choice < 1 || choice > 8);
+            } while (choice < 1 || choice > 5);
         } catch (Exception e) {
             System.err.println(e.getMessage());
             logger.warn(e.getMessage());

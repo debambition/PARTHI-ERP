@@ -54,21 +54,28 @@ public class ProductInterface {
         String response = "";
         String hasMoreProduct = "N";
         double totalProductCost = 0;
+        boolean validInput = false;
 
         AddProduct addProduct = new AddProduct();
         List<Product> productList = new ArrayList<>();
 
         // Call the add transactions from transaction model
         // in for loop call the add product
-        do {
+        do { productList.add(this.addProduct());
+    System.out.print(productResponse + "\nDo you want to add more product(s) [Y/N]: ");
+    numberOfProducts++;    
+    
 
-            productList.add(this.addProduct());
-            System.out.print(productResponse + "\nDo you want to add more product(s) [Y/N]");
-            numberOfProducts++;
-            // flush the extra enter
-            sc.nextLine();
-            hasMoreProduct = sc.nextLine();
+    while (!validInput) {
+        sc.nextLine(); // flush extra enter
+        hasMoreProduct = sc.nextLine().trim();
 
+        if (hasMoreProduct.equalsIgnoreCase("Y") || hasMoreProduct.equalsIgnoreCase("N")) {
+            validInput = true;
+        } else {
+            System.out.print("Invalid input. Please enter only Y or N: ");
+        }
+    }
         } while (hasMoreProduct.equalsIgnoreCase("Y"));
 
         addProduct.setProduct(productList);

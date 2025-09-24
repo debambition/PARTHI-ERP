@@ -17,7 +17,7 @@ public class ProductService {
     TransactionService transactionService = new TransactionService();
     
     
-    public String addMyProduct(String id){
+   public String addMyProduct(String id,String category, String name,String description,double costPrice, double sellingPrice,double mrp){
     	String response = "Product added successfully with ID: "+id;
     	return response;
     }

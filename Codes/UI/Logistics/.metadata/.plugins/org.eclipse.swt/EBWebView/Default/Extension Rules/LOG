@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 2025/09/24-00:54:10.900 4fa4 Creating DB D:\study material\LEARNIG BY DEB SIR\Java Project\GITHUBMAIN\PARTHI-ERP\Codes\UI\Logistics\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Extension Rules since it was missing.
 2025/09/24-00:54:10.924 4fa4 Reusing MANIFEST D:\study material\LEARNIG BY DEB SIR\Java Project\GITHUBMAIN\PARTHI-ERP\Codes\UI\Logistics\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Extension Rules/MANIFEST-000001
+=======
+2025/09/23-23:28:51.352 42fc Creating DB E:\Workspace\workspace_3\ERP-PORTAL\Codes\UI\Logistics\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Extension Rules since it was missing.
+2025/09/23-23:28:54.005 42fc Reusing MANIFEST E:\Workspace\workspace_3\ERP-PORTAL\Codes\UI\Logistics\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Extension Rules/MANIFEST-000001
+>>>>>>> 471a941 (updated GUI for add expense)

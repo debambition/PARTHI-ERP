@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <dirs>
+<<<<<<< HEAD
     <entry loc="C:\Program Files\Java\jdk-17" stamp="1721056032390"/>
     <entry loc="C:\Users\HP\.p2\pool\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.8.v20250724-1412\jre" stamp="1757175731066"/>
     <entry loc="C:\Users\HP\.p2\pool\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.8.v20250724-1412" stamp="1757175731068"/>
+=======
+    <entry loc="C:\Users\chatt\.p2\pool\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.8.v20250724-1412" stamp="1758014547042"/>
+    <entry loc="C:\Users\chatt\.p2\pool\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.8.v20250724-1412\jre" stamp="1758014547040"/>
+    <entry loc="C:\Program Files\Java\jdk-21" stamp="1726154999629"/>
+>>>>>>> 471a941 (updated GUI for add expense)
 </dirs>

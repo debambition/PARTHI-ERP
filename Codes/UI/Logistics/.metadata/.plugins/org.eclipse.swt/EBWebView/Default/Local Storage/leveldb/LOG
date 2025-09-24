@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 2025/09/24-00:54:27.485 5478 Reusing MANIFEST D:\study material\LEARNIG BY DEB SIR\Java Project\GITHUBMAIN\PARTHI-ERP\Codes\UI\Logistics\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
 2025/09/24-00:54:27.497 5478 Recovering log #3
 2025/09/24-00:54:27.499 5478 Reusing old log D:\study material\LEARNIG BY DEB SIR\Java Project\GITHUBMAIN\PARTHI-ERP\Codes\UI\Logistics\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb/000003.log 
+=======
+2025/09/24-13:59:49.224 bf4 Reusing MANIFEST E:\Workspace\workspace_3\ERP-PORTAL\Codes\UI\Logistics\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
+2025/09/24-13:59:49.247 bf4 Recovering log #3
+2025/09/24-13:59:49.254 bf4 Reusing old log E:\Workspace\workspace_3\ERP-PORTAL\Codes\UI\Logistics\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb/000003.log 
+>>>>>>> 471a941 (updated GUI for add expense)

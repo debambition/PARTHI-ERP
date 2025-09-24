@@ -1,2 +1,8 @@
+<<<<<<< HEAD
 2025/09/24-00:54:11.022 4774 Creating DB D:\study material\LEARNIG BY DEB SIR\Java Project\GITHUBMAIN\PARTHI-ERP\Codes\UI\Logistics\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Extension State since it was missing.
 2025/09/24-00:54:11.045 4774 Reusing MANIFEST D:\study material\LEARNIG BY DEB SIR\Java Project\GITHUBMAIN\PARTHI-ERP\Codes\UI\Logistics\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Extension State/MANIFEST-000001
+=======
+2025/09/24-13:52:32.882 6bf8 Reusing MANIFEST E:\Workspace\workspace_3\ERP-PORTAL\Codes\UI\Logistics\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Extension State/MANIFEST-000001
+2025/09/24-13:52:32.883 6bf8 Recovering log #3
+2025/09/24-13:52:32.884 6bf8 Reusing old log E:\Workspace\workspace_3\ERP-PORTAL\Codes\UI\Logistics\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Extension State/000003.log 
+>>>>>>> 471a941 (updated GUI for add expense)

@@ -1,1 +1,6 @@
+<<<<<<< HEAD
 INDEX VERSION 1.134+D:\study material\LEARNIG BY DEB SIR\Java Project\GITHUBMAIN\PARTHI-ERP\Codes\UI\Logistics\.metadata\.plugins\org.eclipse.jdt.core
+=======
+INDEX VERSION 1.134+E:\Workspace\workspace_3\ERP-PORTAL\Codes\UI\Logistics\.metadata\.plugins\org.eclipse.jdt.core
+1865797976.index
+>>>>>>> 471a941 (updated GUI for add expense)

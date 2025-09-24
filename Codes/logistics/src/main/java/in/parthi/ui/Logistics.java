@@ -5,8 +5,7 @@ import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import in.parthi.common.Properties;
-import in.parthi.core.model.product.Product;
-import in.parthi.core.model.transaction.Transaction;
+
 
 public class Logistics {
 

@@ -8,6 +8,12 @@ import in.parthi.core.repository.TransactionRepo;
 public class TransactionService {
     private static final Logger logger = LoggerFactory.getLogger(TransactionService.class);
     TransactionRepo transactionRepo = new TransactionRepo();
+    
+    
+    public String addMyTransaction(String id, String particular, String transactionType){
+    	String response = "Transaction added successfully with ID: "+id;
+    	return response;
+    }
 
     /**
      * This method take a Transaction details and add it to the database.

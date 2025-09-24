@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <libraryInfos>
+<<<<<<< HEAD
     <libraryInfo home="C:\Program Files\Java\jdk-17" version="17.0.11"/>
     <libraryInfo home="C:\Users\HP\.p2\pool\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.8.v20250724-1412\jre" version="21.0.8"/>
     <libraryInfo home="C:\Users\HP\.p2\pool\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.8.v20250724-1412" version="21.0.8">
+=======
+    <libraryInfo home="C:\Users\chatt\.p2\pool\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.8.v20250724-1412" version="21.0.8">
+>>>>>>> 471a941 (updated GUI for add expense)
         <bootpath>
             <entry path="null"/>
         </bootpath>
@@ -13,4 +17,9 @@
             <entry path="null"/>
         </endorsedDirs>
     </libraryInfo>
+<<<<<<< HEAD
+=======
+    <libraryInfo home="C:\Users\chatt\.p2\pool\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_21.0.8.v20250724-1412\jre" version="21.0.8"/>
+    <libraryInfo home="C:\Program Files\Java\jdk-21" version="21.0.4"/>
+>>>>>>> 471a941 (updated GUI for add expense)
 </libraryInfos>

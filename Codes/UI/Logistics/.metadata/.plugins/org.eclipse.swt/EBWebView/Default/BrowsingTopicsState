@@ -1,12 +1,21 @@
 {
    "epochs": [ {
+<<<<<<< HEAD
       "calculation_time": "13403129053175434",
+=======
+      "calculation_time": "13403129335413111",
+>>>>>>> 471a941 (updated GUI for add expense)
       "config_version": 0,
       "model_version": "0",
       "padded_top_topics_start_index": 0,
       "taxonomy_version": 0,
       "top_topics_and_observing_domains": [  ]
    } ],
+<<<<<<< HEAD
    "hex_encoded_hmac_key": "DE4CBA958942EC7E7D577ED69E0E542CC7F7938CC9528706B087D98BC6A1AA9A",
    "next_scheduled_calculation_time": "13403733853175453"
+=======
+   "hex_encoded_hmac_key": "6C047FCAB3435537C30B65756D7E29D896149617B78437B15773967FA17D8B51",
+   "next_scheduled_calculation_time": "13403734135413217"
+>>>>>>> 471a941 (updated GUI for add expense)
 }

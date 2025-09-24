@@ -1,2 +1,8 @@
+<<<<<<< HEAD
 2025/09/24-00:54:10.925 4774 Creating DB D:\study material\LEARNIG BY DEB SIR\Java Project\GITHUBMAIN\PARTHI-ERP\Codes\UI\Logistics\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\shared_proto_db since it was missing.
 2025/09/24-00:54:10.932 4774 Reusing MANIFEST D:\study material\LEARNIG BY DEB SIR\Java Project\GITHUBMAIN\PARTHI-ERP\Codes\UI\Logistics\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\shared_proto_db/MANIFEST-000001
+=======
+2025/09/24-13:52:32.699 20c0 Reusing MANIFEST E:\Workspace\workspace_3\ERP-PORTAL\Codes\UI\Logistics\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\shared_proto_db/MANIFEST-000001
+2025/09/24-13:52:32.700 20c0 Recovering log #3
+2025/09/24-13:52:32.701 20c0 Reusing old log E:\Workspace\workspace_3\ERP-PORTAL\Codes\UI\Logistics\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\shared_proto_db/000003.log 
+>>>>>>> 471a941 (updated GUI for add expense)

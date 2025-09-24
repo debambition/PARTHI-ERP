@@ -2,14 +2,12 @@ package in.parthi.ui;
 
 import java.time.LocalDate;
 import java.util.Scanner;
-import javax.management.RuntimeErrorException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import in.parthi.common.PaymentMode;
 import in.parthi.common.Properties;
 import in.parthi.common.TransactionCategory;
 import in.parthi.common.TransactionType;
-import in.parthi.core.model.product.Product;
 import in.parthi.core.model.transaction.Transaction;
 import in.parthi.core.service.TransactionService;
 

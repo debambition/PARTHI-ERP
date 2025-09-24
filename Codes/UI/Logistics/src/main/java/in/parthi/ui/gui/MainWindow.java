@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 
 import in.parthi.core.service.ProductService;
+import in.parthi.core.service.TransactionService;
 import javax.swing.JTextField;
 
 public class MainWindow {
@@ -22,27 +23,38 @@ public class MainWindow {
 	private JTextField textProductId;
 	JLabel lblProductId;
 	JButton btnSubmitAddProduct;
+	
+	private JTextField textCategory;
+	 JLabel lblCategory;
+	
+	private JTextField textName;
+	JLabel lblName;
+	
+	private JTextField textDescription;
+	JLabel lblDescription;
+	
+	private JTextField textCostPrice;
+	JLabel lblCostPrice;
+	
+	private JTextField textSellingPrice;
+	JLabel lblSellingPrice;
+	
+	private JTextField textMrp;
+	JLabel lblMrp;
+ 
 	//Add Product End
 
-	//Add Product Form
+	//Add Transaction Form
 	private JTextField textTransactionId;
 	JLabel lblTransactionId;
 	JButton btnSubmitAddTransaction;
-	protected JLabel textCatagory;
-	private JTextField textCategory;
-	private JTextField textName;
-	private JTextField textDescription;
-	private JTextField textCostPrice;
-	private JTextField textSellingPrice;
-	private JTextField textMrp;
 
-	private JLabel lblCategory;
-	private JLabel lblName;
-	private JLabel lblDescription;
-	private JLabel lblCostPrice;
-	private JLabel lblSellingPrice;
-	private JLabel lblMrp;
-	//Add Product End
+	private JTextField textParticular;
+	JLabel lbParticular;
+	private JTextField textTransactionType;
+	JLabel lbTransactionType;
+	
+	//Add Transaction End
 
 	/**
 	 * Launch the application.
@@ -108,7 +120,9 @@ public class MainWindow {
 
 		lblStatus = new JLabel("STATUS: ");
 		lblStatus.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblStatus.setBackground(Color.GRAY);
+		//
+		lblStatus.setOpaque(true);
+		lblStatus.setBackground(Color.GRAY); 
 		lblStatus.setBounds(10, 513, 760, 54);
 		frame.getContentPane().add(lblStatus);
 
@@ -219,7 +233,7 @@ public class MainWindow {
 		// Product Form Ended
 
 		// Add Expense
-		//		 Product Form Started
+		//		 Transaction Form Started
 		textTransactionId = new JTextField();
 		textTransactionId.setBounds(574, 107, 128, 31);
 		frame.getContentPane().add(textTransactionId);
@@ -232,16 +246,40 @@ public class MainWindow {
 		frame.getContentPane().add(lblTransactionId);
 		lblTransactionId.setVisible(false);
 
+		
+	
+		textParticular = new JTextField();
+		textParticular.setBounds(574, 159, 128, 31);
+		frame.getContentPane().add(textParticular);
+		textParticular.setColumns(10);
+		textParticular.setVisible(false);
+		
+		
+		lbParticular = new JLabel("Particular");
+		lbParticular.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lbParticular.setBounds(417, 159, 106, 31);
+		frame.getContentPane().add(lbParticular);
+		lbParticular.setVisible(false);
+		
+		textTransactionType = new JTextField();
+		textTransactionType.setBounds(574, 210, 128, 31);
+		frame.getContentPane().add(textTransactionType);
+		textTransactionType.setColumns(10);
+		textTransactionType.setVisible(false);
+		
+		lbTransactionType = new JLabel("Transaction type");
+		lbTransactionType.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lbTransactionType.setBounds(417, 210, 140, 31);
+		frame.getContentPane().add(lbTransactionType);
+		lbTransactionType.setVisible(false);
+		
+		
 		btnSubmitAddTransaction = new JButton("Submit");
 		btnSubmitAddTransaction.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnSubmitAddTransaction.setBounds(617, 482, 85, 21);
 		frame.getContentPane().add(btnSubmitAddTransaction);
-		
-		
-		
-		
-		
-		
+		btnSubmitAddTransaction.setVisible(false);
+				
 		// End Add Expense
 
 		//Action for the buttons started
@@ -267,7 +305,9 @@ public class MainWindow {
 
 		        // Call service method to add product
 		        String response = productService.addMyProduct(id, category, name, description, costPrice, sellingPrice, mrp);
+		        
 		        lblStatus.setText(response);
+
 			}
 			
 			
@@ -279,6 +319,20 @@ public class MainWindow {
 				hideAll();
 				showAddTransaction();
 				frame.repaint();	
+			}
+		});
+		
+		btnSubmitAddTransaction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TransactionService transactionService = new TransactionService();
+				String id = "";
+				String particular = "";
+				String transactionType = "";
+				id = textTransactionId.getText();
+				particular = textParticular.getText();
+				transactionType = textTransactionType.getText();
+				String response  = transactionService.addMyTransaction(id,particular,transactionType);
+				lblStatus.setText(response);
 			}
 		});
 
@@ -309,10 +363,10 @@ public class MainWindow {
 		lblProductId.setVisible(true);
 		btnSubmitAddProduct.setVisible(true);		
 		
-		lblOperation.setText("Add Product");
-		textProductId.setVisible(true);
-		lblProductId.setVisible(true);
-		btnSubmitAddProduct.setVisible(true);
+//		lblOperation.setText("Add Product");
+//		textProductId.setVisible(true);
+//		lblProductId.setVisible(true);
+//		btnSubmitAddProduct.setVisible(true);
 
 		textCategory.setVisible(true);
 		lblCategory.setVisible(true);
@@ -340,6 +394,10 @@ public class MainWindow {
 		lblOperation.setText("Add Transaction");
 		textTransactionId.setVisible(true);
 		lblTransactionId.setVisible(true);
+		textParticular.setVisible(true);  
+		lbParticular.setVisible(true); 
+		textTransactionType.setVisible(true);
+		lbTransactionType.setVisible(true);
 		btnSubmitAddTransaction.setVisible(true);
 	}
 
@@ -350,15 +408,15 @@ public class MainWindow {
 		
 		textProductId.setVisible(false);
 		lblProductId.setVisible(false);
-		btnSubmitAddProduct.setVisible(false);		
+				
 		
-		textTransactionId.setVisible(false);
-		lblTransactionId.setVisible(false);
-		btnSubmitAddTransaction.setVisible(false);	
+//		textTransactionId.setVisible(false);
+//		lblTransactionId.setVisible(false);
+//		btnSubmitAddTransaction.setVisible(false);	
 		
-		textProductId.setVisible(false);
-		lblProductId.setVisible(false);
-		btnSubmitAddProduct.setVisible(false);
+//		textProductId.setVisible(false);
+//		lblProductId.setVisible(false);
+//		btnSubmitAddProduct.setVisible(false);
 
 		textCategory.setVisible(false);
 		lblCategory.setVisible(false);
@@ -377,9 +435,14 @@ public class MainWindow {
 
 		textMrp.setVisible(false);
 		lblMrp.setVisible(false);
+		btnSubmitAddProduct.setVisible(false);
 
 		textTransactionId.setVisible(false);
 		lblTransactionId.setVisible(false);
+		lbParticular.setVisible(false);
+		textParticular.setVisible(false);
+		textTransactionType.setVisible(false);
+		lbTransactionType.setVisible(false);
 		btnSubmitAddTransaction.setVisible(false);
 
 	}

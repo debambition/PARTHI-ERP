@@ -28,6 +28,20 @@ public class MainWindow {
 	private JTextField textTransactionId;
 	JLabel lblTransactionId;
 	JButton btnSubmitAddTransaction;
+	protected JLabel textCatagory;
+	private JTextField textCategory;
+	private JTextField textName;
+	private JTextField textDescription;
+	private JTextField textCostPrice;
+	private JTextField textSellingPrice;
+	private JTextField textMrp;
+
+	private JLabel lblCategory;
+	private JLabel lblName;
+	private JLabel lblDescription;
+	private JLabel lblCostPrice;
+	private JLabel lblSellingPrice;
+	private JLabel lblMrp;
 	//Add Product End
 
 	/**
@@ -116,6 +130,86 @@ public class MainWindow {
 		lblProductId.setBounds(438, 105, 96, 31);
 		frame.getContentPane().add(lblProductId);
 		lblProductId.setVisible(false);
+		
+		// Category input field and label
+		textCategory = new JTextField();
+		textCategory.setBounds(574, 150, 128, 31);
+		frame.getContentPane().add(textCategory);
+		textCategory.setColumns(10);
+		textCategory.setVisible(false);
+
+		lblCategory = new JLabel("Category");
+		lblCategory.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblCategory.setBounds(438, 150, 96, 31);
+		frame.getContentPane().add(lblCategory);
+		lblCategory.setVisible(false);
+
+		// Name input field and label
+		textName = new JTextField();
+		textName.setBounds(574, 190, 128, 31);
+		frame.getContentPane().add(textName);
+		textName.setColumns(10);
+		textName.setVisible(false);
+
+		lblName = new JLabel("Name");
+		lblName.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblName.setBounds(438, 190, 96, 31);
+		frame.getContentPane().add(lblName);
+		lblName.setVisible(false);
+
+		// Description input field and label
+		textDescription = new JTextField();
+		textDescription.setBounds(574, 230, 128, 31);
+		frame.getContentPane().add(textDescription);
+		textDescription.setColumns(10);
+		textDescription.setVisible(false);
+
+		lblDescription = new JLabel("Description");
+		lblDescription.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblDescription.setBounds(438, 230, 96, 31);
+		frame.getContentPane().add(lblDescription);
+		lblDescription.setVisible(false);
+
+		// Cost Price input field and label
+		textCostPrice = new JTextField();
+		textCostPrice.setBounds(574, 270, 128, 31);
+		frame.getContentPane().add(textCostPrice);
+		textCostPrice.setColumns(10);
+		textCostPrice.setVisible(false);
+
+		lblCostPrice = new JLabel("Cost Price");
+		lblCostPrice.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblCostPrice.setBounds(438, 270, 96, 31);
+		frame.getContentPane().add(lblCostPrice);
+		lblCostPrice.setVisible(false);
+
+		// Selling Price input field and label
+		textSellingPrice = new JTextField();
+		textSellingPrice.setBounds(574, 310, 128, 31);
+		frame.getContentPane().add(textSellingPrice);
+		textSellingPrice.setColumns(10);
+		textSellingPrice.setVisible(false);
+
+		lblSellingPrice = new JLabel("Selling Price");
+		lblSellingPrice.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblSellingPrice.setBounds(438, 310, 96, 31);
+		frame.getContentPane().add(lblSellingPrice);
+		lblSellingPrice.setVisible(false);
+
+		// MRP input field and label
+		textMrp = new JTextField();
+		textMrp.setBounds(574, 350, 128, 31);
+		frame.getContentPane().add(textMrp);
+		textMrp.setColumns(10);
+		textMrp.setVisible(false);
+
+		lblMrp = new JLabel("MRP");
+		lblMrp.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblMrp.setBounds(438, 350, 96, 31);
+		frame.getContentPane().add(lblMrp);
+		lblMrp.setVisible(false);
+
+		
 
 		btnSubmitAddProduct = new JButton("Submit");
 		btnSubmitAddProduct.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -142,7 +236,12 @@ public class MainWindow {
 		btnSubmitAddTransaction.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnSubmitAddTransaction.setBounds(617, 482, 85, 21);
 		frame.getContentPane().add(btnSubmitAddTransaction);
-		btnSubmitAddTransaction.setVisible(false);
+		
+		
+		
+		
+		
+		
 		// End Add Expense
 
 		//Action for the buttons started
@@ -156,12 +255,23 @@ public class MainWindow {
 
 		btnSubmitAddProduct.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ProductService productService = new ProductService();
-				String id = "";
-				id = textProductId.getText();
-				String response  = productService.addMyProduct(id);
-				lblStatus.setText(response);
+				// Collect product details from input fields
+		        ProductService productService = new ProductService();
+		        String id = textProductId.getText();
+		        String category = textCategory.getText();
+		        String name = textName.getText();
+		        String description = textDescription.getText();
+		        double costPrice = Double.parseDouble(textCostPrice.getText());
+		        double sellingPrice = Double.parseDouble(textSellingPrice.getText());
+		        double mrp = Double.parseDouble(textMrp.getText());
+
+		        // Call service method to add product
+		        String response = productService.addMyProduct(id, category, name, description, costPrice, sellingPrice, mrp);
+		        lblStatus.setText(response);
 			}
+			
+			
+			
 		});
 
 		btnAddExpense.addActionListener(new ActionListener() {
@@ -193,10 +303,36 @@ public class MainWindow {
 
 	private void showAddProduct() {
 		//Make the form visible
+		// Show all product input fields when "Add Product" is clicked
+		lblOperation.setText("Add Product");
+		textProductId.setVisible(true);
+		lblProductId.setVisible(true);
+		btnSubmitAddProduct.setVisible(true);		
+		
 		lblOperation.setText("Add Product");
 		textProductId.setVisible(true);
 		lblProductId.setVisible(true);
 		btnSubmitAddProduct.setVisible(true);
+
+		textCategory.setVisible(true);
+		lblCategory.setVisible(true);
+
+		textName.setVisible(true);
+		lblName.setVisible(true);
+
+		textDescription.setVisible(true);
+		lblDescription.setVisible(true);
+
+		textCostPrice.setVisible(true);
+		lblCostPrice.setVisible(true);
+
+		textSellingPrice.setVisible(true);
+		lblSellingPrice.setVisible(true);
+
+		textMrp.setVisible(true);
+		lblMrp.setVisible(true);
+
+		
 	}
 	
 	private void showAddTransaction() {
@@ -208,15 +344,43 @@ public class MainWindow {
 	}
 
 	private void hideAll() {
+		
+		// Hide all input fields and reset status
 		lblStatus.setText("STATUS:");
 		
 		textProductId.setVisible(false);
 		lblProductId.setVisible(false);
-		btnSubmitAddProduct.setVisible(false);
-		
+		btnSubmitAddProduct.setVisible(false);		
 		
 		textTransactionId.setVisible(false);
 		lblTransactionId.setVisible(false);
+		btnSubmitAddTransaction.setVisible(false);	
+		
+		textProductId.setVisible(false);
+		lblProductId.setVisible(false);
+		btnSubmitAddProduct.setVisible(false);
+
+		textCategory.setVisible(false);
+		lblCategory.setVisible(false);
+
+		textName.setVisible(false);
+		lblName.setVisible(false);
+
+		textDescription.setVisible(false);
+		lblDescription.setVisible(false);
+
+		textCostPrice.setVisible(false);
+		lblCostPrice.setVisible(false);
+
+		textSellingPrice.setVisible(false);
+		lblSellingPrice.setVisible(false);
+
+		textMrp.setVisible(false);
+		lblMrp.setVisible(false);
+
+		textTransactionId.setVisible(false);
+		lblTransactionId.setVisible(false);
 		btnSubmitAddTransaction.setVisible(false);
+
 	}
 }

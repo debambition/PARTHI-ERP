@@ -10,8 +10,8 @@ public class TransactionService {
     TransactionRepo transactionRepo = new TransactionRepo();
     
     
-    public String addMyTransaction(String id, String particular, String transactionType){
-    	String response = "Transaction added successfully with ID: "+id;
+    public String addMyTransaction(String id){
+    	String response = "Transaction added successfully with ID: ";
     	return response;
     }
 

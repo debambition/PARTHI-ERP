@@ -58,6 +58,10 @@ public class MainWindow {
 	private JLabel lblCheckInDate;
 	
 	LocalDate today = LocalDate.now();
+	
+	//Add transaction form
+	private JTextField textTransactionId;
+	private JLabel lblTransactionId;
 
 
 
@@ -65,6 +69,10 @@ public class MainWindow {
 	private JTextField textCheckInDate;
 	private JLabel lblNewLabel;
 	private JLabel lblFinalPrdId;
+	
+	
+	TransactionService transactionService = new TransactionService();
+	
 
 	/**
 	 * Launch the application.
@@ -224,6 +232,40 @@ public class MainWindow {
 		panelAddExpense = new JPanel();
 		tabbedPane.addTab("Add Expense", null, panelAddExpense, null);
 		panelAddExpense.setLayout(null);
+
+		//------------------Transaction Form started
+		
+		lblTransactionId = new JLabel("Transaction Id");
+		lblTransactionId.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblTransactionId.setBounds(100, 45, 96, 24);
+		panelAddExpense.add(lblTransactionId);
+
+		textTransactionId = new JTextField();
+		textTransactionId.setToolTipText("Transaction id is auto generated");
+//		textProductId.addFocusListener(new FocusAdapter() {
+//			@Override
+//			public void focusLost(FocusEvent e) {
+//				String prdId = productService.getNextProductId(textProductId.getText().toUpperCase());
+//				lblFinalPrdId.setText(prdId);
+//				frame.repaint();
+//			}
+//		});
+		textTransactionId.setFont(new Font("Dialog", Font.PLAIN, 12));
+		textTransactionId.setBounds(207, 45, 147, 24);
+		panelAddExpense.add(textTransactionId);
+		textTransactionId.setColumns(10);
+		
+		lblStatus = new JLabel("STATUS: ");
+		lblStatus.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblStatus.setBounds(25, 402, 492, 36);
+		panelAddExpense.add(lblStatus);
+		
+		JButton btnAddTransaction = new JButton("Add Transaction");
+		btnAddTransaction.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnAddTransaction.setBounds(207, 321, 147, 28);
+		panelAddExpense.add(btnAddTransaction);
+		
+		//------------------Transaction Form Ended
 		
 		panelAddSales = new JPanel();
 		tabbedPane.addTab("Add Sales", null, panelAddSales, null);
@@ -269,6 +311,28 @@ public class MainWindow {
 			
 		});
 		
-
+		
+		
+		//------------Add Transaction Form actions-------------------
+		btnAddTransaction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TransactionService transactionService = new TransactionService();
+				String id = "";
+//				String particular = "";
+//				String transactionType = "";
+//				String paymentMode = "";
+//				String category ="";
+//				double amount =0;
+				id = textTransactionId.getText();
+//				particular = textParticular.getText();
+//				transactionType = textTransactionType.getText();
+//				paymentMode = textPaymentMode.getText();
+//				category = textTransactionCategory.getText();
+//				amount = Double.parseDouble(textAmount.getText());
+				
+				String response  = transactionService.addMyTransaction(id);
+				lblStatus.setText("STATUS: " +response);
+			}
+		});
 	}
 }

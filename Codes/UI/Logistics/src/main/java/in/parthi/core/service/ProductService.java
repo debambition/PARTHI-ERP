@@ -16,13 +16,7 @@ public class ProductService {
     ProductRepo productRepo = new ProductRepo();
     TransactionService transactionService = new TransactionService();
     
-    
-   public String addMyProduct(String id,String category, String name,String description,double costPrice, double sellingPrice,double mrp){
-    	String response = "Product added successfully with ID: "+id;
-    	return response;
-    }
-    
-
+ 
     /**
      * This method take a an procuct id and retrieve the product from the database.
      * 

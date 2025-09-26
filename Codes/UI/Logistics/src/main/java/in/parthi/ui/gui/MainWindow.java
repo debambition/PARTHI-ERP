@@ -18,6 +18,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 
 import in.parthi.common.PaymentMode;
+import in.parthi.common.Properties;
 import in.parthi.common.TransactionCategory;
 import in.parthi.common.TransactionType;
 import in.parthi.core.model.product.Product;
@@ -48,12 +49,18 @@ public class MainWindow {
 	private JTabbedPane paneAddProduct;
 	JLabel lblOperation;
 	JLabel lblAddPrdStatus;
+	private JLabel lblReturnPrdStatus;
 	JButton btnSubmitAddProduct;
 	JLabel lblPrdCategory;
+	private JLabel lblReturnCategory;
 	private JTextField textName;
+	private JTextField textReturnName;
 	JLabel lblPrdName;
+	private JLabel lblReturnName;
 	private JTextField textDescription;
+	private JTextField textReturnDescription;
 	JLabel lblPrdDescription;
+	private JLabel lblReturnDescription;
 	JButton btnSubmitAddTransaction;
 	JLabel lbParticular;
 	JLabel lbTransactionType;
@@ -65,13 +72,20 @@ public class MainWindow {
 	private JLabel lblProductId;
 	private JTextField textProductId;
 	private JTextField textCategory;
+	private JTextField textReturnCategory;
 	private JTextField textCostPrice;
+	private JTextField textReturnCostPrice;
 	private JLabel lblCostPrice;
+	private JLabel lblReturnCostPrice;
 	private JLabel lblMrp;
+	private JLabel lblReturnMrp;
 	private JTextField textMrp;
+	private JTextField textReturnMrp;
 	private JLabel lblCheckInDate;
 	private JDateChooser checkinDate;
 	private JButton btnAddProduct;
+	private JButton btnReturnProduct;
+	private JDateChooser returnDate;
 
 	//Transaction components
 	private JTextField textTxnAmount;
@@ -94,14 +108,13 @@ public class MainWindow {
 	private JButton btnAddTransaction;
 	private JLabel lblAddTxnStatus;
 
+	//Return Product Component
+	private JLabel lblReturnPrdID;
+	private JTextField textReturnPrdId;
+
+	//------------------------------------------
 	LocalDate todayDateTime = LocalDate.now();
 	Date today = Date.from(todayDateTime.atStartOfDay(ZoneId.systemDefault()).toInstant());
-
-	//Add transaction form
-	private JTextField textTransactionId;
-	private JLabel lblTransactionId;
-
-
 
 	ProductService productService = new ProductService();
 	private JLabel lblNewLabel;
@@ -109,6 +122,9 @@ public class MainWindow {
 
 
 	TransactionService transactionService = new TransactionService();
+	private JTextField textReturnCheckinDate;
+	private JLabel lblReturnDate;
+
 
 
 
@@ -167,19 +183,24 @@ public class MainWindow {
 		//Adding all the components for add transaction in a function call.
 		setAddTransaction();
 
-		//------------------Transaction Form Ended
+		//------------------Sales Form
 
 		panelAddSales = new JPanel();
 		tabbedPane.addTab("Add Sales", null, panelAddSales, null);
 		panelAddSales.setLayout(null);
 
-		panelProductReturn = new JPanel();
-		tabbedPane.addTab("Product Return", null, panelProductReturn, null);
-		panelProductReturn.setLayout(null);
+
 
 		panelCustomer = new JPanel();
 		tabbedPane.addTab("Customer Return", null, panelCustomer, null);
 		panelCustomer.setLayout(null);
+
+		//------------------Add return Form
+		panelProductReturn = new JPanel();
+		tabbedPane.addTab("Product Return", null, panelProductReturn, null);
+		panelProductReturn.setLayout(null);
+		returnProductForm();
+		
 
 	}
 
@@ -322,24 +343,24 @@ public class MainWindow {
 			if (id == null || id.trim().length() <1)
 				throw new Exception("Product ID cannot be blank");
 
-			String category = textCategory.getText().toUpperCase();
+			String category = textReturnCategory.getText().toUpperCase();
 			if (category == null || category.trim().length() <1)
 				throw new Exception("Product category cannot be blank");
 
-			String name = textName.getText().toUpperCase();
+			String name = textReturnName.getText().toUpperCase();
 			if (name == null || name.trim().length() <1)
 				throw new Exception("Product name cannot be blank");
 
-			String description = textDescription.getText();
+			String description = textReturnDescription.getText();
 			try {
-				double costPrice = Double.parseDouble(textCostPrice.getText());
+				double costPrice = Double.parseDouble(textReturnCostPrice.getText());
 				product.setCostPrice(costPrice);
 			}catch(Exception e) {
 				throw new Exception("Please enter a valid decimal number for Cost Price");
 			}
 			try {
 
-				double mrp = Double.parseDouble(textMrp.getText());
+				double mrp = Double.parseDouble(textReturnMrp.getText());
 				product.setMrp(mrp);
 			}catch(Exception e) {
 				throw new Exception("Please enter a valid decimal number for MRP");
@@ -353,7 +374,7 @@ public class MainWindow {
 			product.setCategory(category);
 			product.setName(name);
 			product.setDescription(description);
-
+			product.setStatus(Properties.STATUS_AVAILABLE);
 
 
 			String response = productService.addProduct(product);
@@ -362,11 +383,11 @@ public class MainWindow {
 
 			//Set the form to blank for new product
 			textProductId.setText("");
-			textCategory.setText("");
-			textName.setText("");
-			textDescription.setText("");
-			textCostPrice.setText("");
-			textMrp.setText("");
+			textReturnCategory.setText("");
+			textReturnName.setText("");
+			textReturnDescription.setText("");
+			textReturnCostPrice.setText("");
+			textReturnMrp.setText("");
 			checkinDate.setDate(today);
 			lblFinalPrdId.setText("");
 		}catch (Exception e) {
@@ -375,6 +396,7 @@ public class MainWindow {
 		}
 	}
 
+	//Creating the form for add Transaction.
 	private void setAddTransaction() {
 		lblAmount = new JLabel("Amount");
 		lblAmount.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -530,6 +552,149 @@ public class MainWindow {
 			lblAddTxnStatus.setText("ERROR:: "+exception.getLocalizedMessage());
 			lblAddTxnStatus.setForeground(Color.RED);
 		}
+	}
+
+	private void returnProductForm() {
+		lblReturnPrdID = new JLabel("Product ID");
+		lblReturnPrdID.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblReturnPrdID.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblReturnPrdID.setBounds(87, 107, 96, 24);
+		panelProductReturn.add(lblReturnPrdID);
+
+		textReturnPrdId = new JTextField();
+		textReturnPrdId.setFont(new Font("Dialog", Font.PLAIN, 12));
+		textReturnPrdId.setColumns(10);
+		textReturnPrdId.setBounds(207, 107, 147, 24);
+		panelProductReturn.add(textReturnPrdId);
+
+		lblReturnCategory = new JLabel("Category");
+		lblReturnCategory.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblReturnCategory.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblReturnCategory.setBounds(87, 138, 96, 24);
+		panelProductReturn.add(lblReturnCategory);
+
+		textReturnCategory = new JTextField();
+		textReturnCategory.setEditable(false);
+		textReturnCategory.setFont(new Font("Dialog", Font.PLAIN, 12));
+		textReturnCategory.setColumns(10);
+		textReturnCategory.setBounds(207, 139, 147, 24);
+		panelProductReturn.add(textReturnCategory);
+
+		lblReturnName = new JLabel("Name");
+		lblReturnName.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblReturnName.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblReturnName.setBounds(87, 175, 96, 28);
+		panelProductReturn.add(lblReturnName);
+
+		textReturnName = new JTextField();
+		textReturnName.setEditable(false);
+		textReturnName.setFont(new Font("Dialog", Font.PLAIN, 12));
+		textReturnName.setBounds(207, 175, 147, 28);
+		panelProductReturn.add(textReturnName);
+		textReturnName.setColumns(10);
+
+		lblReturnDescription = new JLabel("Description");
+		lblReturnDescription.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblReturnDescription.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblReturnDescription.setBounds(87, 216, 96, 28);
+		panelProductReturn.add(lblReturnDescription);
+
+		textReturnDescription = new JTextField();
+		textReturnDescription.setEditable(false);
+		textReturnDescription.setFont(new Font("Dialog", Font.PLAIN, 12));
+		textReturnDescription.setColumns(10);
+		textReturnDescription.setBounds(207, 217, 147, 28);
+		panelProductReturn.add(textReturnDescription);
+
+		lblReturnCostPrice = new JLabel("Cost Price");
+		lblReturnCostPrice.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblReturnCostPrice.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblReturnCostPrice.setBounds(87, 257, 96, 28);
+		panelProductReturn.add(lblReturnCostPrice);
+
+		textReturnCostPrice = new JTextField();
+		textReturnCostPrice.setEditable(false);
+		textReturnCostPrice.setFont(new Font("Dialog", Font.PLAIN, 12));
+		textReturnCostPrice.setColumns(10);
+		textReturnCostPrice.setBounds(207, 258, 147, 28);
+		panelProductReturn.add(textReturnCostPrice);
+
+		lblReturnMrp = new JLabel("MRP");
+		lblReturnMrp.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblReturnMrp.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblReturnMrp.setBounds(87, 298, 96, 28);
+		panelProductReturn.add(lblReturnMrp);
+
+		textReturnMrp = new JTextField();
+		textReturnMrp.setEditable(false);
+		textReturnMrp.setFont(new Font("Dialog", Font.PLAIN, 12));
+		textReturnMrp.setColumns(10);
+		textReturnMrp.setBounds(207, 299, 147, 28);
+		panelProductReturn.add(textReturnMrp);
+
+		lblCheckInDate = new JLabel("Checkin Date");
+		lblCheckInDate.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblCheckInDate.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblCheckInDate.setBounds(70, 339, 115, 28);
+		panelProductReturn.add(lblCheckInDate);
+
+
+		btnReturnProduct = new JButton("Return Product");
+		btnReturnProduct.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnReturnProduct.setBounds(207, 434, 147, 28);
+		panelProductReturn.add(btnReturnProduct);
+
+		lblReturnPrdStatus = new JLabel("STATUS: ");
+		lblReturnPrdStatus.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblReturnPrdStatus.setBounds(28, 496, 492, 36);
+		panelProductReturn.add(lblReturnPrdStatus);
+
+		textReturnCheckinDate = new JTextField();
+		textReturnCheckinDate.setEditable(false);
+		textReturnCheckinDate.setText((String) null);
+		textReturnCheckinDate.setFont(new Font("Dialog", Font.PLAIN, 12));
+		textReturnCheckinDate.setColumns(10);
+		textReturnCheckinDate.setBounds(207, 340, 147, 28);
+		panelProductReturn.add(textReturnCheckinDate);
+
+		lblReturnDate = new JLabel("Return Date");
+		lblReturnDate.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblReturnDate.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblReturnDate.setBounds(70, 390, 115, 28);
+		panelProductReturn.add(lblReturnDate);
+		
+		returnDate = new JDateChooser();
+		returnDate.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		returnDate.getCalendarButton().setFont(new Font("Tahoma", Font.PLAIN, 12));
+		returnDate.setDateFormatString("dd-MM-yyyy");
+		returnDate.setDate(today);
+		returnDate.setBounds(207, 393, 147, 28);
+		panelProductReturn.add(returnDate);
+		
+		textReturnPrdId.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				getReturnProductDetails();
+				frame.repaint();
+			}
+		});
+	}
+	
+	private void getReturnProductDetails() {
+		Product product = productService.getProduct(textReturnPrdId.getText().toUpperCase());
+		if(product == null) {
+			lblReturnPrdStatus.setText("STATUS: Product with ID "+textReturnPrdId.getText().toUpperCase()+" not found");
+		}else {
+			textReturnCategory.setText(product.getCategory());
+			textReturnName.setText(product.getName());
+			textReturnDescription.setText(product.getDescription());
+			textReturnCostPrice.setText(Double.toString(product.getCostPrice()));
+			textReturnMrp.setText(Double.toString(product.getMrp()));
+			textReturnCheckinDate.setText(product.getStockInDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+			lblReturnPrdStatus.setText("STATUS: "+product.getStatus());
+		}
+		
+		
 	}
 }
 

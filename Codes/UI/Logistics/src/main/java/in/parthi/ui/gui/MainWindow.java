@@ -25,6 +25,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import javax.swing.SwingConstants;
 
 public class MainWindow {
 
@@ -65,8 +66,19 @@ public class MainWindow {
 	private JLabel lblTransactionId;
 	private JTextField textAmount;
 	private JLabel lblAmount;
-
-
+	private JTextField textTnxDescription;
+	private JLabel lblTxnDescription;
+	private JTextField textInvoice;
+	private JLabel lblInvoice;
+	private JTextField textParticular;
+	private JLabel lblParticular;
+	private JTextField textpaymentMode;
+	private JLabel lblpaymentMode;	
+//	private JTextField textTnxType;
+//	private JLabel lblTnxType;
+	
+	
+	//End transaction form
 
 	ProductService productService = new ProductService();
 	private JTextField textCheckInDate;
@@ -226,8 +238,7 @@ public class MainWindow {
 		
 		lblFinalPrdId = new JLabel("");
 		lblFinalPrdId.setBounds(382, 45, 72, 24);
-		panelAddProduct.add(lblFinalPrdId);
-		
+		panelAddProduct.add(lblFinalPrdId);		
 		
 		
 		//------------------Product Form Ended
@@ -279,6 +290,50 @@ public class MainWindow {
 		textAmount.setBounds(207, 79, 147, 24);
 		panelAddExpense.add(textAmount);
 		
+		lblTxnDescription= new JLabel("Description");
+		lblTxnDescription.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblTxnDescription.setBounds(100, 113, 96, 28);
+		panelAddExpense.add(lblTxnDescription);
+		
+		textTnxDescription = new JTextField();
+		textTnxDescription.setFont(new Font("Dialog", Font.PLAIN, 12));
+		textTnxDescription.setBounds(207, 113, 147, 28);
+		panelAddExpense.add(textTnxDescription);
+		textName.setColumns(10);
+		
+		lblInvoice = new JLabel("Invoice");
+		lblInvoice.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblInvoice.setBounds(100, 154, 96, 28);
+		panelAddExpense.add(lblInvoice);
+		
+		textInvoice = new JTextField();
+		textInvoice.setFont(new Font("Dialog", Font.PLAIN, 12));
+		textInvoice.setColumns(10);
+		textInvoice.setBounds(207, 151, 147, 28);
+		panelAddExpense.add(textInvoice);
+		
+		lblParticular = new JLabel("Particular");
+		lblParticular.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblParticular.setBounds(100, 192, 96, 28);
+		panelAddExpense.add(lblParticular);
+		
+		textParticular = new JTextField();
+		textParticular.setFont(new Font("Dialog", Font.PLAIN, 12));
+		textParticular.setColumns(10);
+		textParticular.setBounds(207, 194, 147, 28);
+		panelAddExpense.add(textParticular);
+		
+		lblpaymentMode = new JLabel("Payment mode");
+		lblpaymentMode.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblpaymentMode.setBounds(100, 230, 96, 28);
+		panelAddExpense.add(lblpaymentMode);
+		
+		textpaymentMode = new JTextField();
+		textpaymentMode.setFont(new Font("Dialog", Font.PLAIN, 12));
+		textpaymentMode.setColumns(10);
+		textpaymentMode.setBounds(207, 232, 147, 28);
+		panelAddExpense.add(textpaymentMode);
+		
 		//------------------Transaction Form Ended
 		
 		panelAddSales = new JPanel();
@@ -323,29 +378,37 @@ public class MainWindow {
 			
 			//------------Add Product Form actions end-------------------
 			
-		});
-		
-		
+		});		
 		
 		//------------Add Transaction Form actions-------------------
 		btnAddTransaction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TransactionService transactionService = new TransactionService();
 				String id = "";
-//				String particular = "";
+				String particular = "";
 //				String transactionType = "";
-//				String paymentMode = "";
+				String paymentMode = "";
 //				String category ="";
 				double amount =0;
+				String description;
+				String invoice;
 				id = textTransactionId.getText();
-//				particular = textParticular.getText();
-//				transactionType = textTransactionType.getText();
-//				paymentMode = textPaymentMode.getText();
+				paymentMode = textpaymentMode.getText();
 //				category = textTransactionCategory.getText();
 				amount = Double.parseDouble(textAmount.getText());
+				description = textTnxDescription.getText();
+				invoice = textInvoice.getText();
+				particular = textParticular.getText();
+//				transactionType = textTnxType.getText();
 				
 				Transaction transaction = new Transaction();
 				transaction.setId(id);
+				transaction.setAmount(amount);
+				transaction.setDescription(description);	
+				transaction.setInvoice(invoice);
+				transaction.setParticular(particular);
+//				transaction.setTxnType(transactionType);
+				transaction.setPaymentMode(paymentMode);
 				
 				String response  = transactionService.addTransaction(transaction);
 				lblStatus.setText("STATUS: " +response);

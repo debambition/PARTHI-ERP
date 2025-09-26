@@ -1,1 +1,47 @@
-/target/
+# Eclipse specific files
+.classpath
+.project
+.settings/
+
+# Eclipse launch configurations
+*.launch
+
+# Java build directories
+bin/
+target/
+out/
+build/
+
+# Maven
+log/
+logs/
+!src/main/resources/log/   # keep log configs if inside resources
+!.gitignore
+
+# IntelliJ IDEA (just in case project is opened there too)
+*.iml
+.idea/
+*.ipr
+*.iws
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Java specific
+*.class
+*.jar
+*.war
+*.ear
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
+
+# Log files
+*.log
+
+# Environment / credentials
+.env

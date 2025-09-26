@@ -10,11 +10,16 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
+import in.parthi.common.PaymentMode;
+import in.parthi.common.TransactionCategory;
+import in.parthi.common.TransactionType;
 import in.parthi.core.model.product.Product;
 import in.parthi.core.model.transaction.Transaction;
 import in.parthi.core.service.ProductService;
@@ -27,26 +32,33 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.SwingConstants;
 
+import com.toedter.calendar.JDateChooser;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
+import javax.swing.JSpinner;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+
 public class MainWindow {
 
 	private JFrame frame;
 	private JTabbedPane tabbedPane;
+
+	//Add Product components
 	private JTabbedPane paneAddProduct;
 	JLabel lblOperation;
-	JLabel lblStatus;
+	JLabel lblAddPrdStatus;
 	JButton btnSubmitAddProduct;
-	JLabel lblCategory;
-
+	JLabel lblPrdCategory;
 	private JTextField textName;
-	JLabel lblName;
-
+	JLabel lblPrdName;
 	private JTextField textDescription;
-	JLabel lblDescription;
+	JLabel lblPrdDescription;
 	JButton btnSubmitAddTransaction;
 	JLabel lbParticular;
 	JLabel lbTransactionType;
 	private JPanel panelAddProduct;
-	private JPanel panelAddExpense;
+	private JPanel panelAddTransaction;
 	private JPanel panelAddSales;
 	private JPanel panelProductReturn;
 	private JPanel panelCustomer;
@@ -58,13 +70,11 @@ public class MainWindow {
 	private JLabel lblMrp;
 	private JTextField textMrp;
 	private JLabel lblCheckInDate;
-	
-	LocalDate today = LocalDate.now();
-	
-	//Add transaction form
-	private JTextField textTransactionId;
-	private JLabel lblTransactionId;
-	private JTextField textAmount;
+	private JDateChooser checkinDate;
+	private JButton btnAddProduct;
+
+	//Transaction components
+	private JTextField textTxnAmount;
 	private JLabel lblAmount;
 	private JTextField textTnxDescription;
 	private JLabel lblTxnDescription;
@@ -72,22 +82,35 @@ public class MainWindow {
 	private JLabel lblInvoice;
 	private JTextField textParticular;
 	private JLabel lblParticular;
-	private JTextField textpaymentMode;
+	private JComboBox comboBoxTxnpaymentMode;
 	private JLabel lblpaymentMode;	
-//	private JTextField textTnxType;
-//	private JLabel lblTnxType;
-	
-	
-	//End transaction form
+	private JLabel lblHeaderAddProduct;
+	private JLabel lblTxnCategory;
+	private JComboBox comboBoxTxnCategory;
+	private JLabel lblTxnType;
+	private JComboBox comboBoxTxnType;
+	private JLabel lblTxnDate;
+	private JDateChooser txnDate;
+	private JButton btnAddTransaction;
+	private JLabel lblAddTxnStatus;
+
+	LocalDate todayDateTime = LocalDate.now();
+	Date today = Date.from(todayDateTime.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+	//Add transaction form
+	private JTextField textTransactionId;
+	private JLabel lblTransactionId;
+
+
 
 	ProductService productService = new ProductService();
-	private JTextField textCheckInDate;
 	private JLabel lblNewLabel;
 	private JLabel lblFinalPrdId;
-	
-	
+
+
 	TransactionService transactionService = new TransactionService();
-	
+
+
 
 	/**
 	 * Launch the application.
@@ -117,32 +140,65 @@ public class MainWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame("Parthi Logistics");
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Acceleratron\\IT-Induction\\parthi\\parthi-erp\\Codes\\UI\\Logistics\\src\\main\\resources\\image\\logo.png"));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 794, 614);
-	
+
 		frame.getContentPane().setLayout(null);
 
 		// Create JTabbedPane with vertical tab placement
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.LEFT);
-		tabbedPane.setBounds(0, 0, 780, 570);
+		tabbedPane.setBounds(0, 0, 770, 570);
 		tabbedPane.setFont(new Font("Tahoma", Font.BOLD, 12));
 
 		frame.getContentPane().add(tabbedPane);
 
-		paneAddProduct = new JTabbedPane(JTabbedPane.TOP);
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		
-		
+		//------------------Section for Add Products
 		panelAddProduct = new JPanel();
 		tabbedPane.addTab("Add Product", panelAddProduct);
 		panelAddProduct.setLayout(null);
+		//Adding all the components for add products in a function call.
+		setAddProductForm();
+
+		//------------------Section for Add Transaction
+		panelAddTransaction = new JPanel();
+		tabbedPane.addTab("Add Transaction", null, panelAddTransaction, null);
+		panelAddTransaction.setLayout(null);
+		//Adding all the components for add transaction in a function call.
+		setAddTransaction();
+
+		//------------------Transaction Form Ended
+
+		panelAddSales = new JPanel();
+		tabbedPane.addTab("Add Sales", null, panelAddSales, null);
+		panelAddSales.setLayout(null);
+
+		panelProductReturn = new JPanel();
+		tabbedPane.addTab("Product Return", null, panelProductReturn, null);
+		panelProductReturn.setLayout(null);
+
+		panelCustomer = new JPanel();
+		tabbedPane.addTab("Customer Return", null, panelCustomer, null);
+		panelCustomer.setLayout(null);
+
+	}
+
+	//Creating the form for add products.
+	private void setAddProductForm() {
 		//------------------Product Form Started
-		
+
+		lblHeaderAddProduct = new JLabel("Add Product");
+		lblHeaderAddProduct.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHeaderAddProduct.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblHeaderAddProduct.setBounds(55, 0, 286, 35);
+		panelAddProduct.add(lblHeaderAddProduct);
+
 		lblProductId = new JLabel("Product Id");
-		lblProductId.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblProductId.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblProductId.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblProductId.setBounds(100, 45, 96, 24);
 		panelAddProduct.add(lblProductId);
-		
+
 		textProductId = new JTextField();
 		textProductId.setToolTipText("Give Product ID in format:  \"SA-\"");
 		textProductId.addFocusListener(new FocusAdapter() {
@@ -157,262 +213,323 @@ public class MainWindow {
 		textProductId.setBounds(207, 45, 147, 24);
 		panelAddProduct.add(textProductId);
 		textProductId.setColumns(10);
-		
-		lblCategory = new JLabel("Category");
-		lblCategory.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblCategory.setBounds(100, 79, 96, 24);
-		panelAddProduct.add(lblCategory);
-		
+
+		lblFinalPrdId = new JLabel("");
+		lblFinalPrdId.setBounds(382, 45, 72, 24);
+		panelAddProduct.add(lblFinalPrdId);	
+
+		lblPrdCategory = new JLabel("Category");
+		lblPrdCategory.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblPrdCategory.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblPrdCategory.setBounds(100, 79, 96, 24);
+		panelAddProduct.add(lblPrdCategory);
+
 		textCategory = new JTextField();
 		textCategory.setFont(new Font("Dialog", Font.PLAIN, 12));
 		textCategory.setColumns(10);
 		textCategory.setBounds(207, 79, 147, 24);
 		panelAddProduct.add(textCategory);
-		
-		lblName = new JLabel("Name");
-		lblName.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblName.setBounds(100, 113, 96, 28);
-		panelAddProduct.add(lblName);
-		
+
+		lblPrdName = new JLabel("Name");
+		lblPrdName.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblPrdName.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblPrdName.setBounds(100, 113, 96, 28);
+		panelAddProduct.add(lblPrdName);
+
 		textName = new JTextField();
 		textName.setFont(new Font("Dialog", Font.PLAIN, 12));
 		textName.setBounds(207, 113, 147, 28);
 		panelAddProduct.add(textName);
 		textName.setColumns(10);
-		
-		lblDescription = new JLabel("Description");
-		lblDescription.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblDescription.setBounds(100, 154, 96, 28);
-		panelAddProduct.add(lblDescription);
-		
+
+		lblPrdDescription = new JLabel("Description");
+		lblPrdDescription.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblPrdDescription.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblPrdDescription.setBounds(100, 154, 96, 28);
+		panelAddProduct.add(lblPrdDescription);
+
 		textDescription = new JTextField();
 		textDescription.setFont(new Font("Dialog", Font.PLAIN, 12));
 		textDescription.setColumns(10);
 		textDescription.setBounds(207, 151, 147, 28);
 		panelAddProduct.add(textDescription);
-		
+
 		lblCostPrice = new JLabel("Cost Price");
-		lblCostPrice.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblCostPrice.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblCostPrice.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblCostPrice.setBounds(100, 192, 96, 28);
 		panelAddProduct.add(lblCostPrice);
-		
+
 		textCostPrice = new JTextField();
 		textCostPrice.setFont(new Font("Dialog", Font.PLAIN, 12));
 		textCostPrice.setColumns(10);
 		textCostPrice.setBounds(207, 194, 147, 28);
 		panelAddProduct.add(textCostPrice);
-		
+
 		lblMrp = new JLabel("MRP");
-		lblMrp.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblMrp.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblMrp.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblMrp.setBounds(100, 230, 96, 28);
 		panelAddProduct.add(lblMrp);
-		
+
 		textMrp = new JTextField();
 		textMrp.setFont(new Font("Dialog", Font.PLAIN, 12));
 		textMrp.setColumns(10);
 		textMrp.setBounds(207, 232, 147, 28);
 		panelAddProduct.add(textMrp);
-		
-		JButton btnAddProduct = new JButton("Add Product");
-		btnAddProduct.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnAddProduct.setBounds(207, 321, 147, 28);
-		panelAddProduct.add(btnAddProduct);
-		
+
 		lblCheckInDate = new JLabel("Checkin Date");
-		lblCheckInDate.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblCheckInDate.setBounds(100, 268, 96, 28);
+		lblCheckInDate.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblCheckInDate.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblCheckInDate.setBounds(81, 268, 115, 28);
 		panelAddProduct.add(lblCheckInDate);
-		
-		textCheckInDate = new JTextField();
-		textCheckInDate.setEditable(false);
-		textCheckInDate.setFont(new Font("Dialog", Font.PLAIN, 12));
-		textCheckInDate.setColumns(10);
-		textCheckInDate.setBounds(207, 270, 96, 28);
-		textCheckInDate.setText(today.format(formatter));
-		panelAddProduct.add(textCheckInDate);
-		
-		lblStatus = new JLabel("STATUS: ");
-		lblStatus.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblStatus.setBounds(25, 402, 492, 36);
-		panelAddProduct.add(lblStatus);
-		
-		lblFinalPrdId = new JLabel("");
-		lblFinalPrdId.setBounds(382, 45, 72, 24);
-		panelAddProduct.add(lblFinalPrdId);		
-		
-		
-		//------------------Product Form Ended
-		
-		panelAddExpense = new JPanel();
-		tabbedPane.addTab("Add Expense", null, panelAddExpense, null);
-		panelAddExpense.setLayout(null);
 
-		//------------------Transaction Form started
-		
-		lblTransactionId = new JLabel("Transaction Id");
-		lblTransactionId.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblTransactionId.setBounds(100, 45, 96, 24);
-		panelAddExpense.add(lblTransactionId);
+		checkinDate = new JDateChooser();
+		checkinDate.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		checkinDate.getCalendarButton().setFont(new Font("Tahoma", Font.PLAIN, 12));
+		checkinDate.setDateFormatString("dd-MM-yyyy");
+		checkinDate.setDate(today);
+		checkinDate.setBounds(207, 270, 147, 28);
+		panelAddProduct.add(checkinDate);
 
-		textTransactionId = new JTextField();
-		textTransactionId.setToolTipText("Transaction id is auto generated");
-//		textProductId.addFocusListener(new FocusAdapter() {
-//			@Override
-//			public void focusLost(FocusEvent e) {
-//				String prdId = productService.getNextProductId(textProductId.getText().toUpperCase());
-//				lblFinalPrdId.setText(prdId);
-//				frame.repaint();
-//			}
-//		});
-		textTransactionId.setFont(new Font("Dialog", Font.PLAIN, 12));
-		textTransactionId.setBounds(207, 45, 147, 24);
-		panelAddExpense.add(textTransactionId);
-		textTransactionId.setColumns(10);
-		
-		lblStatus = new JLabel("STATUS: ");
-		lblStatus.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblStatus.setBounds(25, 402, 492, 36);
-		panelAddExpense.add(lblStatus);
-		
-		JButton btnAddTransaction = new JButton("Add Transaction");
-		btnAddTransaction.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnAddTransaction.setBounds(207, 321, 147, 28);
-		panelAddExpense.add(btnAddTransaction);
-		
-		lblAmount = new JLabel("Amount");
-		lblAmount.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblAmount.setBounds(100, 79, 96, 24);
-		panelAddExpense.add(lblAmount);
-		
-		textAmount = new JTextField();
-		textAmount.setFont(new Font("Dialog", Font.PLAIN, 12));
-		textAmount.setColumns(10);
-		textAmount.setBounds(207, 79, 147, 24);
-		panelAddExpense.add(textAmount);
-		
-		lblTxnDescription= new JLabel("Description");
-		lblTxnDescription.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblTxnDescription.setBounds(100, 113, 96, 28);
-		panelAddExpense.add(lblTxnDescription);
-		
-		textTnxDescription = new JTextField();
-		textTnxDescription.setFont(new Font("Dialog", Font.PLAIN, 12));
-		textTnxDescription.setBounds(207, 113, 147, 28);
-		panelAddExpense.add(textTnxDescription);
-		textName.setColumns(10);
-		
-		lblInvoice = new JLabel("Invoice");
-		lblInvoice.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblInvoice.setBounds(100, 154, 96, 28);
-		panelAddExpense.add(lblInvoice);
-		
-		textInvoice = new JTextField();
-		textInvoice.setFont(new Font("Dialog", Font.PLAIN, 12));
-		textInvoice.setColumns(10);
-		textInvoice.setBounds(207, 151, 147, 28);
-		panelAddExpense.add(textInvoice);
-		
-		lblParticular = new JLabel("Particular");
-		lblParticular.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblParticular.setBounds(100, 192, 96, 28);
-		panelAddExpense.add(lblParticular);
-		
-		textParticular = new JTextField();
-		textParticular.setFont(new Font("Dialog", Font.PLAIN, 12));
-		textParticular.setColumns(10);
-		textParticular.setBounds(207, 194, 147, 28);
-		panelAddExpense.add(textParticular);
-		
-		lblpaymentMode = new JLabel("Payment mode");
-		lblpaymentMode.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblpaymentMode.setBounds(100, 230, 96, 28);
-		panelAddExpense.add(lblpaymentMode);
-		
-		textpaymentMode = new JTextField();
-		textpaymentMode.setFont(new Font("Dialog", Font.PLAIN, 12));
-		textpaymentMode.setColumns(10);
-		textpaymentMode.setBounds(207, 232, 147, 28);
-		panelAddExpense.add(textpaymentMode);
-		
-		//------------------Transaction Form Ended
-		
-		panelAddSales = new JPanel();
-		tabbedPane.addTab("Add Sales", null, panelAddSales, null);
-		panelAddSales.setLayout(null);
-		
-		panelProductReturn = new JPanel();
-		tabbedPane.addTab("Product Return", null, panelProductReturn, null);
-		panelProductReturn.setLayout(null);
-		
-		panelCustomer = new JPanel();
-		tabbedPane.addTab("Customer Return", null, panelCustomer, null);
-		panelCustomer.setLayout(null);
-		
-		
+
+		btnAddProduct = new JButton("Add Product");
+		btnAddProduct.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnAddProduct.setBounds(207, 342, 147, 28);
+		panelAddProduct.add(btnAddProduct);
+
+		lblAddPrdStatus = new JLabel("STATUS: ");
+		lblAddPrdStatus.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblAddPrdStatus.setBounds(25, 402, 492, 36);
+		panelAddProduct.add(lblAddPrdStatus);
+
 		//------------Add Product Form actions-------------------
-		
+
 		btnAddProduct.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Collect product details from input fields
-		        ProductService productService = new ProductService();
-		        String id = textProductId.getText();
-		        String category = textCategory.getText();
-		        String name = textName.getText();
-		        String description = textDescription.getText();
-		        double costPrice = Double.parseDouble(textCostPrice.getText());
-		        double mrp = Double.parseDouble(textMrp.getText());
-		        
-		        Product	product = new Product();
-		        product.setStockInDate(today);
-		        product.setId(id);
-		        product.setCategory(category);
-		        product.setName(name);
-		        product.setDescription(description);
-		        product.setCostPrice(costPrice);		        
-		        product.setMrp(mrp);
-		        
-		        String response = productService.addProduct(product);
-		        lblStatus.setText("STATUS: "+response);
-
-			}
-			
-			//------------Add Product Form actions end-------------------
-			
-		});		
-		
-		//------------Add Transaction Form actions-------------------
-		btnAddTransaction.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				TransactionService transactionService = new TransactionService();
-				String id = "";
-				String particular = "";
-//				String transactionType = "";
-				String paymentMode = "";
-//				String category ="";
-				double amount =0;
-				String description;
-				String invoice;
-				id = textTransactionId.getText();
-				paymentMode = textpaymentMode.getText();
-//				category = textTransactionCategory.getText();
-				amount = Double.parseDouble(textAmount.getText());
-				description = textTnxDescription.getText();
-				invoice = textInvoice.getText();
-				particular = textParticular.getText();
-//				transactionType = textTnxType.getText();
-				
-				Transaction transaction = new Transaction();
-				transaction.setId(id);
-				transaction.setAmount(amount);
-				transaction.setDescription(description);	
-				transaction.setInvoice(invoice);
-				transaction.setParticular(particular);
-//				transaction.setTxnType(transactionType);
-				transaction.setPaymentMode(paymentMode);
-				
-				String response  = transactionService.addTransaction(transaction);
-				lblStatus.setText("STATUS: " +response);
+				addProduct();
+				frame.repaint();
 			}
 		});
 	}
+
+	private void addProduct() {
+		try {
+			Product	product = new Product();
+			ProductService productService = new ProductService();
+			String id = lblFinalPrdId.getText().toUpperCase();
+			if (id == null || id.trim().length() <1)
+				throw new Exception("Product ID cannot be blank");
+
+			String category = textCategory.getText().toUpperCase();
+			if (category == null || category.trim().length() <1)
+				throw new Exception("Product category cannot be blank");
+
+			String name = textName.getText().toUpperCase();
+			if (name == null || name.trim().length() <1)
+				throw new Exception("Product name cannot be blank");
+
+			String description = textDescription.getText();
+			try {
+				double costPrice = Double.parseDouble(textCostPrice.getText());
+				product.setCostPrice(costPrice);
+			}catch(Exception e) {
+				throw new Exception("Please enter a valid decimal number for Cost Price");
+			}
+			try {
+
+				double mrp = Double.parseDouble(textMrp.getText());
+				product.setMrp(mrp);
+			}catch(Exception e) {
+				throw new Exception("Please enter a valid decimal number for MRP");
+			}
+			LocalDate stockinDate = checkinDate.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+			if (stockinDate.isAfter(LocalDate.now())) {
+				throw new Exception("Please Select a past date or today's date");
+			}
+			product.setStockInDate(stockinDate);
+			product.setId(id);
+			product.setCategory(category);
+			product.setName(name);
+			product.setDescription(description);
+
+
+
+			String response = productService.addProduct(product);
+			lblAddPrdStatus.setText("STATUS:: "+response);
+			lblAddPrdStatus.setForeground(Color.BLACK);
+
+			//Set the form to blank for new product
+			textProductId.setText("");
+			textCategory.setText("");
+			textName.setText("");
+			textDescription.setText("");
+			textCostPrice.setText("");
+			textMrp.setText("");
+			checkinDate.setDate(today);
+			lblFinalPrdId.setText("");
+		}catch (Exception e) {
+			lblAddPrdStatus.setText("ERROR:: "+e.getLocalizedMessage());
+			lblAddPrdStatus.setForeground(Color.RED);
+		}
+	}
+
+	private void setAddTransaction() {
+		lblAmount = new JLabel("Amount");
+		lblAmount.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblAmount.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblAmount.setBounds(100, 79, 96, 24);
+		panelAddTransaction.add(lblAmount);
+
+		textTxnAmount = new JTextField();
+		textTxnAmount.setFont(new Font("Dialog", Font.PLAIN, 12));
+		textTxnAmount.setColumns(10);
+		textTxnAmount.setBounds(229, 79, 147, 24);
+		panelAddTransaction.add(textTxnAmount);
+
+		lblTxnDescription= new JLabel("Description");
+		lblTxnDescription.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblTxnDescription.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblTxnDescription.setBounds(100, 113, 96, 28);
+		panelAddTransaction.add(lblTxnDescription);
+
+		textTnxDescription = new JTextField();
+		textTnxDescription.setFont(new Font("Dialog", Font.PLAIN, 12));
+		textTnxDescription.setBounds(229, 116, 147, 28);
+		panelAddTransaction.add(textTnxDescription);
+		textName.setColumns(10);
+
+		lblInvoice = new JLabel("Invoice");
+		lblInvoice.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblInvoice.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblInvoice.setBounds(100, 154, 96, 28);
+		panelAddTransaction.add(lblInvoice);
+
+		textInvoice = new JTextField();
+		textInvoice.setFont(new Font("Dialog", Font.PLAIN, 12));
+		textInvoice.setColumns(10);
+		textInvoice.setBounds(229, 154, 147, 28);
+		panelAddTransaction.add(textInvoice);
+
+		lblParticular = new JLabel("Particular");
+		lblParticular.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblParticular.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblParticular.setBounds(100, 192, 96, 28);
+		panelAddTransaction.add(lblParticular);
+
+		textParticular = new JTextField();
+		textParticular.setFont(new Font("Dialog", Font.PLAIN, 12));
+		textParticular.setColumns(10);
+		textParticular.setBounds(229, 192, 147, 28);
+		panelAddTransaction.add(textParticular);
+
+		lblpaymentMode = new JLabel("Payment mode");
+		lblpaymentMode.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblpaymentMode.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblpaymentMode.setBounds(100, 230, 96, 28);
+		panelAddTransaction.add(lblpaymentMode);
+
+		comboBoxTxnpaymentMode = new JComboBox();
+		comboBoxTxnpaymentMode.setModel(new DefaultComboBoxModel<>(PaymentMode.values()));
+		comboBoxTxnpaymentMode.setBounds(229, 230, 147, 28);
+		panelAddTransaction.add(comboBoxTxnpaymentMode);
+
+		lblTxnCategory = new JLabel("Category");
+		lblTxnCategory.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblTxnCategory.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblTxnCategory.setBounds(100, 271, 96, 28);
+		panelAddTransaction.add(lblTxnCategory);
+
+		comboBoxTxnCategory = new JComboBox();
+		comboBoxTxnCategory.setModel(new DefaultComboBoxModel<>(TransactionCategory.values()));
+		comboBoxTxnCategory.setBounds(229, 271, 147, 28);
+		panelAddTransaction.add(comboBoxTxnCategory);
+
+		lblTxnType = new JLabel("Type");
+		lblTxnType.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblTxnType.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblTxnType.setBounds(100, 312, 96, 28);
+		panelAddTransaction.add(lblTxnType);
+
+		comboBoxTxnType = new JComboBox();
+		comboBoxTxnType.setModel(new DefaultComboBoxModel<>(TransactionType.values()));
+		comboBoxTxnType.setBounds(229, 314, 147, 24);
+		panelAddTransaction.add(comboBoxTxnType);
+
+		lblTxnDate = new JLabel("Transaction Date");
+		lblTxnDate.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblTxnDate.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblTxnDate.setBounds(58, 353, 138, 28);
+		panelAddTransaction.add(lblTxnDate);
+
+		txnDate = new JDateChooser();
+		txnDate.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		txnDate.getCalendarButton().setFont(new Font("Tahoma", Font.PLAIN, 12));
+		txnDate.setDateFormatString("dd-MM-yyyy");
+		txnDate.setDate(today);
+		txnDate.setBounds(229, 353, 147, 28);
+		panelAddTransaction.add(txnDate);
+
+
+		btnAddTransaction = new JButton("Add Transaction");
+		btnAddTransaction.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnAddTransaction.setBounds(229, 426, 147, 28);
+		panelAddTransaction.add(btnAddTransaction);
+
+		lblAddTxnStatus = new JLabel("STATUS: ");
+		lblAddTxnStatus.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblAddTxnStatus.setBounds(12, 481, 492, 36);
+		panelAddTransaction.add(lblAddTxnStatus);
+
+		//------------Add Transaction Form actions-------------------
+
+		btnAddTransaction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Collect product details from input fields
+				addTransaction();
+				frame.repaint();
+			}
+		});
+	}
+
+	private void addTransaction() {
+		TransactionService transactionService = new TransactionService();
+		Transaction transaction = new Transaction();
+		try {
+			try {
+				transaction.setAmount(Double.parseDouble(textTxnAmount.getText()));
+			}catch(Exception ex) {
+				throw new Exception("Please enter a valid decimal value for Transaction Amount");
+			}
+			if(textTnxDescription.getText() == null || textTnxDescription.getText().trim().length() < 1)
+				throw new Exception("Description cannot be blank");
+			transaction.setDescription(textTnxDescription.getText());	
+			transaction.setInvoice(textInvoice.getText());
+			transaction.setParticular(textParticular.getText());
+			transaction.setPaymentMode(comboBoxTxnpaymentMode.getSelectedItem().toString());
+			transaction.setTxnCategory(comboBoxTxnCategory.getSelectedItem().toString());
+			transaction.setTxnType(comboBoxTxnType.getSelectedItem().toString());
+			LocalDate transactionDate = txnDate.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+			if (transactionDate.isAfter(LocalDate.now())) {
+				throw new Exception("Please Select a past date or today's date");
+			}
+			transaction.setTransactionDate(transactionDate);
+
+			String response  = transactionService.addTransaction(transaction);
+			lblAddTxnStatus.setText("STATUS: " +response);
+			lblAddTxnStatus.setForeground(Color.BLACK);
+
+			//Reset the transaction form
+			textTxnAmount.setText("");
+			textTnxDescription.setText("");
+			textInvoice.setText("");
+			textParticular.setText("");
+			txnDate.setDate(today);
+		}catch (Exception exception) {
+			lblAddTxnStatus.setText("ERROR:: "+exception.getLocalizedMessage());
+			lblAddTxnStatus.setForeground(Color.RED);
+		}
+	}
 }
+

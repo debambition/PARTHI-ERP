@@ -10,11 +10,6 @@ public class TransactionService {
     TransactionRepo transactionRepo = new TransactionRepo();
     
     
-    public String addMyTransaction(String id){
-    	String response = "Transaction added successfully with ID: ";
-    	return response;
-    }
-
     /**
      * This method take a Transaction details and add it to the database.
      * 

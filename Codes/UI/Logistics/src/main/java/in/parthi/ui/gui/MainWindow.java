@@ -16,6 +16,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 
 import in.parthi.core.model.product.Product;
+import in.parthi.core.model.transaction.Transaction;
 import in.parthi.core.service.ProductService;
 import in.parthi.core.service.TransactionService;
 import javax.swing.JTextField;
@@ -62,6 +63,8 @@ public class MainWindow {
 	//Add transaction form
 	private JTextField textTransactionId;
 	private JLabel lblTransactionId;
+	private JTextField textAmount;
+	private JLabel lblAmount;
 
 
 
@@ -265,6 +268,17 @@ public class MainWindow {
 		btnAddTransaction.setBounds(207, 321, 147, 28);
 		panelAddExpense.add(btnAddTransaction);
 		
+		lblAmount = new JLabel("Amount");
+		lblAmount.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblAmount.setBounds(100, 79, 96, 24);
+		panelAddExpense.add(lblAmount);
+		
+		textAmount = new JTextField();
+		textAmount.setFont(new Font("Dialog", Font.PLAIN, 12));
+		textAmount.setColumns(10);
+		textAmount.setBounds(207, 79, 147, 24);
+		panelAddExpense.add(textAmount);
+		
 		//------------------Transaction Form Ended
 		
 		panelAddSales = new JPanel();
@@ -322,15 +336,18 @@ public class MainWindow {
 //				String transactionType = "";
 //				String paymentMode = "";
 //				String category ="";
-//				double amount =0;
+				double amount =0;
 				id = textTransactionId.getText();
 //				particular = textParticular.getText();
 //				transactionType = textTransactionType.getText();
 //				paymentMode = textPaymentMode.getText();
 //				category = textTransactionCategory.getText();
-//				amount = Double.parseDouble(textAmount.getText());
+				amount = Double.parseDouble(textAmount.getText());
 				
-				String response  = transactionService.addMyTransaction(id);
+				Transaction transaction = new Transaction();
+				transaction.setId(id);
+				
+				String response  = transactionService.addTransaction(transaction);
 				lblStatus.setText("STATUS: " +response);
 			}
 		});

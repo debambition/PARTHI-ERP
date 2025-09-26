@@ -12,16 +12,19 @@ package in.parthi.core.model.transaction;
 import java.time.LocalDate;
 import java.util.UUID;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 
 
 @Entity
-@Table(name="trade_record")
+@Table(name="transactions")
 public class Transaction {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String invoice;
     private String particular;
     private String txnType; 
@@ -40,11 +43,9 @@ public class Transaction {
     }
 
     public Transaction() {
-        this.id = UUID.randomUUID().toString();
     }
 
     public Transaction(String invoice, String particular, String txnType, String txnCategory, String paymentMode, String description, double amount, LocalDate transactionDate) {
-        this.id = UUID.randomUUID().toString();
         this.invoice = invoice;
         this.particular = particular;
         this.txnType = txnType;
@@ -75,11 +76,11 @@ public class Transaction {
         this.description = description;
     }
 
-    public String getId() {
+    public int getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

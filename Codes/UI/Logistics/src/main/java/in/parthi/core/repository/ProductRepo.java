@@ -77,8 +77,8 @@ public class ProductRepo {
         // product and save to db
         entityManager.merge(product);
         entityManager.getTransaction().commit();
-        response = "Product added successfully";
-        logger.info("Product with id: " + product.getId() + " added to the database");
+        response = "Product with id: " + product.getId() + " updated to Returned the database";
+        logger.info(response);
         entityManager.close();
         entityManagerFactory.close();
 

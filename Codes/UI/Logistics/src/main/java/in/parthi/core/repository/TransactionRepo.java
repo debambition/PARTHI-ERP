@@ -27,7 +27,7 @@ public class TransactionRepo {
      * @throws RuntimeException if the transaction is unavailable in the database.
      */
     
-     public Transaction getTransaction(String id) throws RuntimeException {// Create a NotFound Exception
+     public Transaction getTransaction(int id) throws RuntimeException {// Create a NotFound Exception
         Transaction transaction = null;
          EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Logistic");
          EntityManager entityManager = entityManagerFactory.createEntityManager();

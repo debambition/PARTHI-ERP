@@ -30,7 +30,7 @@ public class TransactionInterface {
         sc.nextLine();
         logger.info("Transaction id is entered which needs to be retrive");
         System.out.println("Please enter the ID: ");
-        String id = sc.nextLine();
+        int id = sc.nextInt();
         transaction = transactionService.getTransaction(id);
         return transaction;
 

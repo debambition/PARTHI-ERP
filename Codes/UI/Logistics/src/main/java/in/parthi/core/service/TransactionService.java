@@ -1,5 +1,7 @@
 package in.parthi.core.service;
 
+import java.time.LocalDate;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import in.parthi.core.model.transaction.Transaction;
@@ -22,6 +24,8 @@ public class TransactionService {
         try {
             // check the transactionb id is already there or not
             temTransaction = this.getTransaction(transaction.getId());
+            if(transaction.getTransactionDate().isAfter(LocalDate.now()))
+            	response = "Transaction date cannot be a future date";
             if (temTransaction == null) {
                 response = transactionRepo.addTransaction(transaction);
             }
@@ -36,16 +40,15 @@ public class TransactionService {
     /**
      * This method take a a transaction id and retrieve the transaction from the database.
      * 
-     * @param String id with which the transaction needs to be found
+     * @param int id with which the transaction needs to be found
      * @return Returns a transaction
      * @throws RuntimeException if the transaction is unavailable in the database.
      */
-    public Transaction getTransaction(String id) {
+    public Transaction getTransaction(int id) {
         Transaction transaction = null;
         try {
             transaction = transactionRepo.getTransaction(id);
             if (transaction == null) {
-
                 logger.info("transaction with id: " + id + " found in database");
             }
 

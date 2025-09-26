@@ -4,7 +4,7 @@ import java.util.Scanner;
 import in.parthi.core.model.transaction.Transaction;
 
 public enum TransactionCategory {
-    TRAVEL, FOOD, SALARY, OPERATION_COST, SALES, INSTALLMENT, PRODUCT_COST, ACCESORIES, ADVERTISEMENT, CAMPAIGN_COST;
+    TRAVEL, FOOD, SALARY, OPERATION_COST, SALES, INSTALLMENT, PRODUCT_COST, PRODUCT_RETURN, ACCESORIES, ADVERTISEMENT, CAMPAIGN_COST;
 
     // Static method for user input
     public static void choose(Transaction transaction) {

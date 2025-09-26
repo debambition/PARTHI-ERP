@@ -6,8 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import in.parthi.common.Properties;
+import in.parthi.common.TransactionCategory;
+import in.parthi.common.TransactionType;
 import in.parthi.core.model.product.AddProduct;
 import in.parthi.core.model.product.Product;
+import in.parthi.core.model.transaction.Transaction;
 import in.parthi.core.repository.ProductRepo;
 
 public class ProductService {
@@ -97,9 +100,9 @@ public class ProductService {
      * This method take a product details and remove product from the database.
      * 
      * @param id that need to be delete to the database
-     * @return Returns the responce
+     * @return Returns the response
      */
-    public String returnToVendor(String id) {
+    public String returnToVendor(String id, LocalDate stockOutDate, String paymentmode) {
         String response = "";
 
         try {
@@ -109,12 +112,21 @@ public class ProductService {
             if (product != null) {
                 // Apply business logic here
                 product.setStatus(Properties.STATUS_RETURNED);
-                product.setStockOutDate(LocalDate.now());
+                product.setStockOutDate(stockOutDate);
 
                 response = productRepo.returnToVendor(product);
+                
+                Transaction transaction = new Transaction();
+                transaction.setAmount(product.getCostPrice());
+                transaction.setDescription("Product with id "+product.getId()+" returned to vendor");
+                transaction.setParticular(product.getId());
+                transaction.setTxnCategory(TransactionCategory.PRODUCT_RETURN.toString());
+                transaction.setTxnType(TransactionType.CREDIT.toString());
+                transaction.setPaymentMode(paymentmode);
+                transaction.setTransactionDate(stockOutDate);
+                
+                response = response +"\n"+transactionService.addTransaction(transaction);
 
-
-                response = "Product with id " + id + " updated successfully";
                 logger.info(response);
             } else {
                 response = "Product with id " + id + " not found";

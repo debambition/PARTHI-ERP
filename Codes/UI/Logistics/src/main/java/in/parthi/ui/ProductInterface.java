@@ -286,7 +286,7 @@ public class ProductInterface {
         logger.info("Taking product id from the user");
         System.out.print("Please enter product id: ");
         String id = sc.nextLine();
-        response = productService.returnToVendor(id);
+        response = productService.returnToVendor(id,LocalDate.now(),"CASH");
 
         return response;
 

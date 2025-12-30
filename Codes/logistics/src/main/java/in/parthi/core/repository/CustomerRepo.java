@@ -22,7 +22,7 @@ public class CustomerRepo {
     public Customer getCustomer(String customerNumber) {
         logger.info("Getting customer with contact number: " + customerNumber);
         Customer customer = null;
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Logistic");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Parthi-IND");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         customer = entityManager.find(Customer.class, customerNumber);
 

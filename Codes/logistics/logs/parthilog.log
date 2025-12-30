@@ -1,8 +1,1 @@
-2025-10-25 15:51:16 INFO  [in.parthi.core.repository.PaymentRepo] [getPaidAmount:] [82] - Retrieving paid amount for product GS-028
-2025-10-25 15:52:00 INFO  [in.parthi.core.repository.PaymentRepo] [getPaidAmount:] [89] - Paid amount received for product GS-028
-2025-10-25 15:52:48 INFO  [in.parthi.core.repository.PaymentRepo] [returnFromCustomer:] [56] - Returning product from customer with product id GS-028
-2025-10-25 15:53:08 INFO  [in.parthi.core.repository.PaymentRepo] [returnFromCustomer:] [64] - Return registered successfully. Customer has a deposite of Rs. 1050.0
-2025-10-25 15:53:24 INFO  [in.parthi.gui.MainWindow] [windowClosing:] [194] - Application is closed after closing the DB connections
-2025-10-25 15:56:46 INFO  [in.parthi.gui.MainWindow] [windowClosing:] [195] - Application is closed after closing the DB connections
-2025-10-25 15:57:02 INFO  [in.parthi.gui.MainWindow] [windowClosing:] [195] - Application is closed after closing the DB connections
-2025-10-25 16:01:57 INFO  [in.parthi.gui.MainWindow] [windowClosing:] [199] - Application is closed after closing the DB connections
+2025-12-30 07:22:31 INFO  [in.parthi.gui.MainWindow] [windowClosing:] [199] - Application is closed after closing the DB connections

@@ -71,7 +71,7 @@ public class TransactionService {
 					customerRepo.updateCustomer(customer);
 				}
 
-				// Update the product status to sold, selling price, checkout date
+				// Update the product status to sold, scustomerelling price, checkout date
 				ProductService productService = new ProductService();
 				productService.updateSoldProduct(transaction.getParticular(), transaction.getTransactionDate(), sellingPrice);
 

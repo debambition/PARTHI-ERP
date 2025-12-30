@@ -26,7 +26,7 @@ public class PaymentRepo {
     public String addPayment(Payment payment) throws RuntimeException {// Create a NotFound Exception
         logger.info("Adding payment for product ID " + payment.getProduct().getId());
         String response = "";
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Logistic");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Parthi-IND");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
 

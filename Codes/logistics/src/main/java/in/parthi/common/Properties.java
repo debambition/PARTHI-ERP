@@ -13,7 +13,7 @@ public class Properties {
     public static final String STATUS_SOLD = "SOLD";
     private static Scanner sc = new Scanner(System.in);
 
-    private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Logistic");
+    private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Parthi-IND");
     private static EntityManager entityManager = entityManagerFactory.createEntityManager();
 
     public static Scanner getSacnnerInstance() {

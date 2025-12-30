@@ -54,6 +54,7 @@ public class ProductService {
             // check the product id is already there or not
             temProduct = this.getProduct(product.getId());
             if (temProduct == null) {
+                //TODO check product-ID config 
                 response = productRepo.addProduct(product);
             } else {
                 response = "The product with id " + product.getId() + " Already exists. Addition failed";
@@ -153,6 +154,7 @@ public class ProductService {
         String maxId = "";
         int num = 0;
         try {
+            //
             maxId = productRepo.getNextProductId(prefixID);
             if (maxId == null || maxId.length() == 0) {
                 nextId = prefixID + "001";

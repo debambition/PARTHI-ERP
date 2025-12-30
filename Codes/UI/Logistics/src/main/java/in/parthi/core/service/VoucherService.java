@@ -2,7 +2,7 @@ package in.parthi.core.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import in.parthi.core.model.voucher.Voucher;
+import in.parthi.core.model.Voucher;
 import in.parthi.core.repository.VoucherRepo;
 
 public class VoucherService {

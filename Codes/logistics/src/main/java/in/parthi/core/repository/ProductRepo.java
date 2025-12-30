@@ -3,8 +3,8 @@ package in.parthi.core.repository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import in.parthi.core.model.product.Product;
+import in.parthi.common.Properties;
+import in.parthi.core.model.Product;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -23,12 +23,8 @@ public class ProductRepo {
      */
     public Product getProduct(String id) {// Create a NotFound Exception
         Product product = null;
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Logistic");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityManager entityManager = Properties.getDBConnection();
         product = entityManager.find(Product.class, id);
-
-        entityManager.close();
-        entityManagerFactory.close();
 
         return product;
 
@@ -43,8 +39,8 @@ public class ProductRepo {
      */
     public String addProduct(Product product) throws RuntimeException {// Create a NotFound Exception
         //
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Logistic");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        logger.info("Adding product with ID "+product.getId());
+        EntityManager entityManager = Properties.getDBConnection();
         entityManager.getTransaction().begin();
         String response = "";
 
@@ -53,8 +49,6 @@ public class ProductRepo {
         entityManager.getTransaction().commit();
         response = "Product added successfully";
         logger.info("Product with id: " + product.getId() + " added to the database");
-        entityManager.close();
-        entityManagerFactory.close();
         return response;
     }
 
@@ -65,11 +59,10 @@ public class ProductRepo {
      * @return Returns responce
      * @throws RuntimeException if the product is not available in the database.
      */
-    public String returnToVendor(Product product) throws RuntimeException {
-
+    public String updateProduct(Product product) throws RuntimeException {
+        logger.info("Updating product with ID "+product.getId());
         //
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Logistic");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityManager entityManager = Properties.getDBConnection();
         entityManager.getTransaction().begin();
         String response = "";
         // product = entityManager.find(Product.class, id);
@@ -77,10 +70,8 @@ public class ProductRepo {
         // product and save to db
         entityManager.merge(product);
         entityManager.getTransaction().commit();
-        response = "Product added successfully";
-        logger.info("Product with id: " + product.getId() + " added to the database");
-        entityManager.close();
-        entityManagerFactory.close();
+        response = "Product with id: " + product.getId() + " updated in the database";
+        logger.info(response);
 
         return response;
 
@@ -94,19 +85,15 @@ public class ProductRepo {
      * @throws RuntimeException if the product is unavailable in the database.
      */
     public String getNextProductId(String prefix) {
+        logger.info("fetching next product ID with series  "+prefix);
         String maxId = null;
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Logistic");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
+        EntityManager entityManager = Properties.getDBConnection();
         TypedQuery<String> query = entityManager.createQuery("SELECT MAX(p.id) FROM Product p WHERE p.id LIKE :prefix", String.class);
         query.setParameter("prefix", prefix + "%");
 
         maxId = query.getSingleResult();
         logger.info("Largest Product ID: " + maxId);
         ///
-
-        entityManager.close();
-        entityManagerFactory.close();
 
         return maxId;
     }

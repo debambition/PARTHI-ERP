@@ -1,33 +1,40 @@
 package in.parthi.common;
 
-import java.util.Scanner;
-import in.parthi.core.model.transaction.Transaction;
+import java.util.Arrays;
 
 public enum TransactionCategory {
-    TRAVEL, FOOD, SALARY, OPERATION_COST, SALES, INSTALLMENT, PRODUCT_COST, ACCESORIES, ADVERTISEMENT, CAMPAIGN_COST;
+    ACCESSORY("ACCESSORY"),
+    ADVERTISEMENT("ADVERTISEMENT"),
+    BANK_COST("BANK COST"),
+    CAMPAIGN_COST("CAMPAIGN COST"),
+    DEPOSITE("DEPOSITE"),
+    FOOD("FOOD"),
+    INSTALLMENT("INSTALLMENT"),
+    INVESTMENT("INVESTMENT"),
+    INVESTMENT_RETURN("INVESTMENT RETURN"),
+    MISC_COST("MISC COST"),
+    OPERATIONAL_COST("OPERATIONAL COST"),
+    PRODUCT_COST("PRODUCT COST"),
+    PRODUCT_RETURN("PRODUCT RETURN"),
+    SALARY("SALARY"),
+    SALES("SALES"),
+    TRAVEL("TRAVEL");
 
-    // Static method for user input
-    public static void choose(Transaction transaction) {
-        Scanner sc = Properties.getSacnnerInstance();
-        int option;
-        int i;
-        do {
-            i = 1;
-            for (TransactionCategory tmp : TransactionCategory.values()) {
-                System.out.println((i++) + "]\t" + tmp);
+    private final String label;
 
-            }
-            System.out.print("Choose your Option: ");
-            option = sc.nextInt();
+    TransactionCategory(String label) {
+        this.label = label;
+    }
 
-            if (option >= 1 && option <= TransactionCategory.values().length) {
-                transaction.setTxnCategory(TransactionCategory.values()[option - 1].toString());
-            } else {
-                System.out.println("Please enter a valid option between 1-" + TransactionCategory.values().length);
+    public String getLabel() {
+        return label;
+    }
 
-            }
-
-        } while (option < 1 || option > TransactionCategory.values().length);
+    // ✅ Return array of labels (excluding PRODUCT_RETURN)
+    public static String[] getLabels() {
+        return Arrays.stream(values())
+                     .filter(tc -> tc != PRODUCT_RETURN && tc != PRODUCT_COST)
+                     .map(TransactionCategory::getLabel)
+                     .toArray(String[]::new);
     }
 }
-
